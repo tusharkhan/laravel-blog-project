@@ -131,6 +131,9 @@
 <script src="{{ asset("assets/dashboard/plugins/select2/js/select2.full.min.js") }}"></script>
 <script src="{{ asset("assets/dashboard/plugins/speakingurl/speakingurl.min.js") }}"></script>
 <script src="{{ asset("assets/dashboard/plugins/slugify/slugify.min.js") }}"></script>
+
+@include('dashboard.inc.editor_script')
+
 <script>
     $(document).ready(function() {
         $('#title').on("input", () => {
@@ -142,10 +145,6 @@
 
         $('#tags').select2({
             tags: true,
-        });
-        $("#content").summernote({
-            placeholder: 'Write content...',
-            height: 170,
         });
         function readURL(input) {
             if (input.files && input.files[0] && input.files[0].type.includes("image")) {
