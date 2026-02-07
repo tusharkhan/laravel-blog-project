@@ -55,4 +55,8 @@ class Post extends Model
     public function comments() {
         return $this->hasMany(Comment::class)->orderBy("created_at", "ASC");
     }
+
+    public function links() {
+        return $this->hasMany(PostLink::class)->orderBy("order", "ASC");
+    }
 }

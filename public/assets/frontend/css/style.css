@@ -2890,6 +2890,7 @@ input:checked + .slider:before {
 }
 
 .post-single-bottom {
+    gap: 2px;
   padding-bottom: 30px;
   border-bottom: 1px solid #E6E7E7;
   display: -webkit-box;

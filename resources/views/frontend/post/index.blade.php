@@ -24,6 +24,15 @@
                         {!! $post->content !!}
                     </div>
                     <div class="post-single-bottom">
+                        @if ($post->links_count > 0)
+                            <div class="post-links ">
+                                <p><strong>Links:</strong>
+                                    @foreach ($post->links as $link)
+                                    <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer">{{ $link->title }}</a>@if (!$loop->last), @endif
+                                    @endforeach
+                                </p>
+                            </div>
+                        @endif
                         @if ($post->tags_count > 0)
                         <div class="tags">
                             <p>Tags:</p>

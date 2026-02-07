@@ -10,11 +10,11 @@ use Illuminate\Support\Str;
 class PostController extends Controller
 {
     public function index($slug) {
-        $post = Post::with(["category", "user", "tags", "comments.user", "comments.replies.user"])->with("comments.replies", function($q) {
+        $post = Post::with(["category", "user", "tags", "links", "comments.user", "comments.replies.user"])->with("comments.replies", function($q) {
             $q->where("status", true);
         })->with("comments", function($q) {
             $q->where("status", true)->where("parent_id", null);
-        })->withCount(["tags", "comments" => function($q) {
+        })->withCount(["tags", "links", "comments" => function($q) {
             $q->where("status", true);
         }])->where("status", true)->where("slug", $slug)->first();
         if ($post) {

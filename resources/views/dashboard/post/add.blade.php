@@ -108,6 +108,24 @@
                                                 <option value="0">Draft</option>
                                             </select>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Links</label>
+                                            <div id="links-container">
+                                                <div class="link-item p-3 mb-2" style="border: 1px solid #ccc; border-radius: 5px;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <input type="text" class="form-control" name="links[0][title]" placeholder="Link Title"/>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <input type="url" class="form-control" name="links[0][url]" placeholder="https://example.com"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-sm btn-info mt-2" id="add-link-btn">
+                                                <i class="fas fa-plus"></i> Add Another Link
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                                 <button class="btn btn-primary" type="submit">Publish</button>
@@ -165,6 +183,34 @@
         }
         $("#thumbnail").change(function(){
             readURL(this);
+        });
+
+        // Links management
+        let linkCount = 1;
+        $('#add-link-btn').on('click', function() {
+            const newLink = `
+                <div class="link-item p-3 mb-2" style="border: 1px solid #ccc; border-radius: 5px;">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="links[${linkCount}][title]" placeholder="Link Title"/>
+                        </div>
+                        <div class="col-md-5">
+                            <input type="url" class="form-control" name="links[${linkCount}][url]" placeholder="https://example.com"/>
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-sm btn-danger remove-link-btn" style="width: 100%;">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            $('#links-container').append(newLink);
+            linkCount++;
+        });
+
+        $(document).on('click', '.remove-link-btn', function() {
+            $(this).closest('.link-item').remove();
         });
     });
 </script>

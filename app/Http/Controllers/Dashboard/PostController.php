@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostLink;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -42,6 +43,9 @@ class PostController extends Controller
             "comment" => ["nullable", Rule::in(["0", "1"])],
             "status" => ["required", Rule::in(["0", "1"])],
             "thumbnail" => ["required", "image"],
+            "links" => ["nullable", "array"],
+            "links.*.title" => ["required_with:links", "string"],
+            "links.*.url" => ["required_with:links", "url"],
         ]);
         $image = $request->file("thumbnail");
         $imageName = md5(time().rand(11111, 99999)).".".$image->extension();
@@ -63,11 +67,21 @@ class PostController extends Controller
                 $post->tags()->attach([$tag->id]);
             }
         }
+        if (Arr::has($validated, "links")) {
+            foreach ($validated["links"] as $order => $link) {
+                PostLink::create([
+                    "post_id" => $post->id,
+                    "title" => $link["title"],
+                    "url" => $link["url"],
+                    "order" => $order,
+                ]);
+            }
+        }
         return redirect()->route("dashboard.posts.index")->with("success", "Post created!");
     }
 
     public function edit($id) {
-        $post = Post::with(["tags"])->withCount(["tags"])->find($id);
+        $post = Post::with(["tags", "links"])->withCount(["tags"])->find($id);
         if ($post && Gate::allows("update-post", $post)) {
             $categories = Category::where("status", true)->orderBy("title", "ASC")->get();
             $tags = Tag::orderBy("name", "ASC")->get();
@@ -89,6 +103,9 @@ class PostController extends Controller
                 "comment" => ["nullable", Rule::in(["0", "1"])],
                 "status" => ["required", Rule::in(["0", "1"])],
                 "thumbnail" => ["nullable", "image"],
+                "links" => ["nullable", "array"],
+                "links.*.title" => ["required_with:links", "string"],
+                "links.*.url" => ["required_with:links", "url"],
             ]);
             $post->title = $validated["title"];
             $post->slug = Str::slug($validated["slug"]);
@@ -116,6 +133,19 @@ class PostController extends Controller
                 $post->tags()->sync($tagArr);
             } else {
                 $post->tags()->sync([]);
+            }
+            if (Arr::has($validated, "links")) {
+                $post->links()->delete();
+                foreach ($validated["links"] as $order => $link) {
+                    PostLink::create([
+                        "post_id" => $post->id,
+                        "title" => $link["title"],
+                        "url" => $link["url"],
+                        "order" => $order,
+                    ]);
+                }
+            } else {
+                $post->links()->delete();
             }
             return redirect()->route("dashboard.posts.index")->with("success", "Post updated!");
         }
@@ -204,6 +234,7 @@ class PostController extends Controller
                 File::delete(public_path("uploads/post/".$post->thumbnail));
             }
             $post->tags()->sync([]);
+            $post->links()->forceDelete();
             $post->comments()->forceDelete();
             $post->forceDelete();
             return back()->with("success", "Post deleted!");
