@@ -24,6 +24,19 @@
                         {!! $post->content !!}
                     </div>
                     <div class="post-single-bottom">
+                        @if ($post->publisher || $post->reporter || $post->location)
+                        <div class="post-meta-info mb-4">
+                            @if ($post->publisher)
+                            <p><strong>Publisher:</strong> {{ $post->publisher }}</p>
+                            @endif
+                            @if ($post->reporter)
+                            <p><strong>Reporter:</strong> {{ $post->reporter }}</p>
+                            @endif
+                            @if ($post->location)
+                            <p><strong>Location:</strong> {{ $post->location }}</p>
+                            @endif
+                        </div>
+                        @endif
                         @if ($post->links_count > 0)
                             <div class="post-links ">
                                 <p><strong>Links:</strong>

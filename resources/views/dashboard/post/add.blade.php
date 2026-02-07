@@ -109,6 +109,18 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
+                                            <label for="publisher">Publisher</label>
+                                            <input type="text" class="form-control" id="publisher" name="publisher" placeholder="Enter publisher name" value="{{ old('publisher') }}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reporter">Reporter</label>
+                                            <input type="text" class="form-control" id="reporter" name="reporter" placeholder="Enter reporter name" value="{{ old('reporter') }}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="location">Location</label>
+                                            <input type="text" class="form-control" id="location" name="location" placeholder="Enter location" value="{{ old('location') }}"/>
+                                        </div>
+                                        <div class="form-group">
                                             <label>Links</label>
                                             <div id="links-container">
                                                 <div class="link-item p-3 mb-2" style="border: 1px solid #ccc; border-radius: 5px;">
