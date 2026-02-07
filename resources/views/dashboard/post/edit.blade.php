@@ -110,6 +110,18 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
+                                            <label for="publisher">Publisher</label>
+                                            <input type="text" class="form-control" id="publisher" name="publisher" placeholder="Enter publisher name" value="{{ $post->publisher ?? '' }}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="reporter">Reporter</label>
+                                            <input type="text" class="form-control" id="reporter" name="reporter" placeholder="Enter reporter name" value="{{ $post->reporter ?? '' }}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="location">Location</label>
+                                            <input type="text" class="form-control" id="location" name="location" placeholder="Enter location" value="{{ $post->location ?? '' }}"/>
+                                        </div>
+                                        <div class="form-group">
                                             <label>Links</label>
                                             <div id="links-container">
                                                 @forelse ($post->links as $index => $link)

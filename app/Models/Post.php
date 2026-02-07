@@ -24,6 +24,9 @@ class Post extends Model
         "is_featured",
         "enable_comment",
         "status",
+        "publisher",
+        "reporter",
+        "location",
     ];
 
     protected $casts = [

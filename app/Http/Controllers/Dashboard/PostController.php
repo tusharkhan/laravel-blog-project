@@ -43,6 +43,9 @@ class PostController extends Controller
             "comment" => ["nullable", Rule::in(["0", "1"])],
             "status" => ["required", Rule::in(["0", "1"])],
             "thumbnail" => ["required", "image"],
+            "publisher" => ["nullable", "string"],
+            "reporter" => ["nullable", "string"],
+            "location" => ["nullable", "string"],
             "links" => ["nullable", "array"],
             "links.*.title" => ["required_with:links", "string"],
             "links.*.url" => ["required_with:links", "url"],
@@ -60,6 +63,9 @@ class PostController extends Controller
             "is_featured" => Arr::has($validated, "featured"),
             "enable_comment" => Arr::has($validated, "comment"),
             "status" => Auth::user()->role == 1 ? "0" : $validated["status"],
+            "publisher" => $validated["publisher"] ?? null,
+            "reporter" => $validated["reporter"] ?? null,
+            "location" => $validated["location"] ?? null,
         ]);
         if (Arr::has($validated, "tags")) {
             foreach ($validated["tags"] as $tag) {
@@ -103,6 +109,9 @@ class PostController extends Controller
                 "comment" => ["nullable", Rule::in(["0", "1"])],
                 "status" => ["required", Rule::in(["0", "1"])],
                 "thumbnail" => ["nullable", "image"],
+                "publisher" => ["nullable", "string"],
+                "reporter" => ["nullable", "string"],
+                "location" => ["nullable", "string"],
                 "links" => ["nullable", "array"],
                 "links.*.title" => ["required_with:links", "string"],
                 "links.*.url" => ["required_with:links", "url"],
@@ -114,6 +123,9 @@ class PostController extends Controller
             $post->is_featured = Arr::has($validated, "featured");
             $post->enable_comment = Arr::has($validated, "comment");
             $post->status = Auth::user()->role == 1 ? "0" : $validated["status"];
+            $post->publisher = $validated["publisher"] ?? null;
+            $post->reporter = $validated["reporter"] ?? null;
+            $post->location = $validated["location"] ?? null;
             if ($request->hasFile("thumbnail")) {
                 $image = $request->file("thumbnail");
                 $imageName = md5(time().rand(11111, 99999)).".".$image->extension();
