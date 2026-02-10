@@ -13,7 +13,7 @@
                                         <a href="{{ route("frontend.category", $featuredpost->category->slug) }}" class="category-style-2">{{ $featuredpost->category->title }}</a>
                                     </div>
                                     <h2 class="entry-title">
-                                        <a href="{{ route("frontend.post", $featuredpost->slug) }}">{{ $featuredpost->title }}</a>
+                                        <a href="{{ route("frontend.post", $featuredpost->getLocalizedSlug()) }}">{{ $featuredpost->getLocalizedTitle() }}</a>
                                     </h2>
                                     <ul class="entry-meta">
                                         <li class="post-author"> <a href="{{ route("frontend.user", $featuredpost->user->username) }}">{{ $featuredpost->user->name }}</a></li>

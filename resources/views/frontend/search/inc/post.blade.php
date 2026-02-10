@@ -3,14 +3,14 @@
         @forelse ($posts as $post)
         <div class="post-list post-list-style1 pt-0">
             <div class="post-list-image">
-                <a href="{{ route("frontend.post", $post->slug) }}">
-                    <img src="{{ asset("uploads/post/".$post->thumbnail) }}" alt="{{ $post->title }}">
+                <a href="{{ route("frontend.post", $post->getLocalizedSlug()) }}">
+                    <img src="{{ asset("uploads/post/".$post->thumbnail) }}" alt="{{ $post->getLocalizedTitle() }}">
                 </a>
             </div>
             <div class="post-list-title">
                 <div class="entry-title">
                     <h5>
-                        <a href="{{ route("frontend.post", $post->slug) }}">{{ $post->title }}</a>
+                        <a href="{{ route("frontend.post", $post->getLocalizedSlug()) }}">{{ $post->getLocalizedTitle() }}</a>
                     </h5>
                 </div>
             </div>
@@ -21,7 +21,7 @@
             </div>
         </div>
         @empty
-        <p>No post found!</p>
+        <p>{{ app()->getLocale() == 'bn' ? 'কোনো পোস্ট পাওয়া যায়নি!' : 'No post found!' }}</p>
         @endforelse
         <div class="pagination">
             <div class="pagination-area">

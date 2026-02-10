@@ -1,6 +1,6 @@
 <div class="widget ">
     <div class="widget-title">
-        <h5>Categories</h5>
+        <h5>{{ app()->getLocale() == 'bn' ? 'বিভাগ' : 'Categories' }}</h5>
     </div>
     @if ($categories->count() > 0)
     <div class="widget-categories">
@@ -14,6 +14,6 @@
         @endforeach
     </div>
     @else
-    <div>No category found!</div>
+    <div>{{ app()->getLocale() == 'bn' ? 'কোনো বিভাগ পাওয়া যায়নি!' : 'No category found!' }}</div>
     @endif
 </div>

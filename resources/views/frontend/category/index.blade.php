@@ -24,13 +24,13 @@
                 @forelse ($posts as $post)
                 <div class="post-list post-list-style2">
                     <div class="post-list-image">
-                        <a href="{{ route("frontend.post", $post->slug) }}">
-                            <img src="{{ asset("uploads/post/".$post->thumbnail) }}" alt="{{ $post->title }}"/>
+                        <a href="{{ route("frontend.post", $post->getLocalizedSlug()) }}">
+                            <img src="{{ asset("uploads/post/".$post->thumbnail) }}" alt="{{ $post->getLocalizedTitle() }}"/>
                         </a>
                     </div>
                     <div class="post-list-content">
                         <h3 class="entry-title">
-                            <a href="{{ route("frontend.post", $post->slug) }}">{{ $post->title }}</a>
+                            <a href="{{ route("frontend.post", $post->getLocalizedSlug()) }}">{{ $post->getLocalizedTitle() }}</a>
                         </h3>
                         <ul class="entry-meta">
                             <li class="post-author-img"><img src="{{ asset("uploads/author/".($post->user->profile ?? "default.webp")) }}" alt="{{ $post->user->name }}"/></li>
@@ -39,15 +39,15 @@
                             <li class="post-date"><span class="line"></span>{{ $post->created_at->format("F d, Y") }}</li>
                         </ul>
                         <div class="post-exerpt">
-                            <p>{{ $str::words(strip_tags($post->content), 20) }}</p>
+                            <p>{{ $str::words(strip_tags($post->getLocalizedContent()), 20) }}</p>
                         </div>
                         <div class="post-btn">
-                            <a href="{{ route("frontend.post", $post->slug) }}" class="btn-read-more">Continue Reading <i class="las la-long-arrow-alt-right"></i></a>
+                            <a href="{{ route("frontend.post", $post->getLocalizedSlug()) }}" class="btn-read-more">{{ app()->getLocale() == 'bn' ? 'আরও পড়ুন' : 'Continue Reading' }} <i class="las la-long-arrow-alt-right"></i></a>
                         </div>
                     </div>
                 </div>
                 @empty
-                <div>No post found!</div>
+                <div>{{ app()->getLocale() == 'bn' ? 'কোনো পোস্ট পাওয়া যায়নি!' : 'No post found!' }}</div>
                 @endforelse
             </div>
         </div>
