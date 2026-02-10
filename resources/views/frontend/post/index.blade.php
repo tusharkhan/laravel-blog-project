@@ -1,6 +1,6 @@
 @extends("frontend.master")
 
-@section("title", $post->title." - ".config('app.sitesettings')::first()->site_title)
+@section("title", $post->getLocalizedTitle()." - ".config('app.sitesettings')::first()->site_title)
 
 @section("content")
 <section class="post-single">
@@ -8,11 +8,11 @@
         <div class="row ">
             <div class="col-lg-12">
                 <div class="post-single-image">
-                    <img src="{{ asset("uploads/post/".$post->thumbnail) }}" alt="{{ $post->title }}"/>
+                    <img src="{{ asset("uploads/post/".$post->thumbnail) }}" alt="{{ $post->getLocalizedTitle() }}"/>
                 </div>
                 <div class="post-single-body">
                     <div class="post-single-title">
-                        <h1>{{ $post->title }}</h1>
+                        <h1>{{ $post->getLocalizedTitle() }}</h1>
                         <ul class="entry-meta">
                             <li class="post-author-img"><img src="{{ asset("uploads/author/".($post->user->profile ?? "default.webp")) }}" alt="{{ $post->user->name }}"/></li>
                             <li class="post-author"> <a href="{{ route("frontend.user", $post->user->username) }}">{{ $post->user->name }}</a></li>
@@ -21,25 +21,25 @@
                         </ul>
                     </div>
                     <div class="post-single-content">
-                        {!! $post->content !!}
+                        {!! $post->getLocalizedContent() !!}
                     </div>
                     <div class="post-single-bottom">
-                        @if ($post->publisher || $post->reporter || $post->location)
+                        @if ($post->getLocalizedPublisher() || $post->getLocalizedReporter() || $post->getLocalizedLocation())
                         <div class="post-meta-info mb-4">
-                            @if ($post->publisher)
-                            <p><strong>Publisher:</strong> {{ $post->publisher }}</p>
+                            @if ($post->getLocalizedPublisher())
+                            <p><strong>{{ app()->getLocale() == 'bn' ? 'প্রকাশক:' : 'Publisher:' }}</strong> {{ $post->getLocalizedPublisher() }}</p>
                             @endif
-                            @if ($post->reporter)
-                            <p><strong>Reporter:</strong> {{ $post->reporter }}</p>
+                            @if ($post->getLocalizedReporter())
+                            <p><strong>{{ app()->getLocale() == 'bn' ? 'প্রতিবেদক:' : 'Reporter:' }}</strong> {{ $post->getLocalizedReporter() }}</p>
                             @endif
-                            @if ($post->location)
-                            <p><strong>Location:</strong> {{ $post->location }}</p>
+                            @if ($post->getLocalizedLocation())
+                            <p><strong>{{ app()->getLocale() == 'bn' ? 'অবস্থান:' : 'Location:' }}</strong> {{ $post->getLocalizedLocation() }}</p>
                             @endif
                         </div>
                         @endif
                         @if ($post->links_count > 0)
                             <div class="post-links ">
-                                <p><strong>Links:</strong>
+                                <p><strong>{{ app()->getLocale() == 'bn' ? 'লিংক:' : 'Links:' }}</strong>
                                     @foreach ($post->links as $link)
                                     <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer">{{ $link->title }}</a>@if (!$loop->last), @endif
                                     @endforeach
@@ -48,7 +48,7 @@
                         @endif
                         @if ($post->tags_count > 0)
                         <div class="tags">
-                            <p>Tags:</p>
+                            <p>{{ app()->getLocale() == 'bn' ? 'ট্যাগ:' : 'Tags:' }}</p>
                             <ul class="list-inline">
                                 @foreach ($post->tags as $tag)
                                 <li>
@@ -59,7 +59,7 @@
                         </div>
                         @endif
                         <div class="social-media">
-                            <p>Share on :</p>
+                            <p>{{ app()->getLocale() == 'bn' ? 'শেয়ার করুন:' : 'Share on :' }}</p>
                             <ul class="list-inline">
                                 <li>
                                     <a href="{{ request()->url() }}"><i class="fab fa-facebook"></i></a>

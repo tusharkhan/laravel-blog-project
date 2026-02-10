@@ -30,4 +30,5 @@ const fullEditorConfig = {
         };
 
         if(document.getElementById('content')) CKEDITOR.replace('content', fullEditorConfig);
+        if(document.getElementById('content_bn')) CKEDITOR.replace('content_bn', fullEditorConfig);
 </script>

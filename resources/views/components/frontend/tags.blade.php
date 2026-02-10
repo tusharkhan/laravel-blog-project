@@ -1,6 +1,6 @@
 <div class="widget">
     <div class="widget-title">
-        <h5>Tags</h5>
+        <h5>{{ app()->getLocale() == 'bn' ? 'ট্যাগ' : 'Tags' }}</h5>
     </div>
     <div class="widget-tags">
         <ul class="list-inline">
@@ -9,7 +9,7 @@
                 <a href="{{ route("frontend.tag", $str::slug($tag->name)) }}">{{ $tag->name }}</a>
             </li>
             @empty
-            <div>No tag found!</div>
+            <div>{{ app()->getLocale() == 'bn' ? 'কোনো ট্যাগ পাওয়া যায়নি!' : 'No tag found!' }}</div>
             @endforelse
         </ul>
     </div>
