@@ -48,17 +48,75 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-8 mx-auto">
-                                        <div class="form-group">
-                                            <label for="title">Title</label>
-                                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" value="{{ old('title') }}"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="slug">Slug</label>
-                                            <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter slug" value="{{ old('slug') }}"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="content">Content</label>
-                                            <textarea class="form-control" id="content" name="content" placeholder="Write content">{{ old('content') }}</textarea>
+                                        <!-- Language Tabs -->
+                                        <ul class="nav nav-tabs" id="languageTabs" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="english-tab" data-toggle="tab" href="#english" role="tab">English</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="bangla-tab" data-toggle="tab" href="#bangla" role="tab">বাংলা (Bangla)</a>
+                                            </li>
+                                        </ul>
+
+                                        <div class="tab-content mt-3" id="languageTabContent">
+                                            <!-- English Fields -->
+                                            <div class="tab-pane fade show active" id="english" role="tabpanel">
+                                                <div class="form-group">
+                                                    <label for="title">Title <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" value="{{ old('title') }}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="slug">Slug <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter slug" value="{{ old('slug') }}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="content">Content <span class="text-danger">*</span></label>
+                                                    <textarea class="form-control" id="content" name="content" placeholder="Write content">{{ old('content') }}</textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="publisher">Publisher</label>
+                                                    <input type="text" class="form-control" id="publisher" name="publisher" placeholder="Enter publisher name" value="{{ old('publisher') }}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="reporter">Reporter</label>
+                                                    <input type="text" class="form-control" id="reporter" name="reporter" placeholder="Enter reporter name" value="{{ old('reporter') }}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="location">Location</label>
+                                                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter location" value="{{ old('location') }}"/>
+                                                </div>
+                                            </div>
+
+                                            <!-- Bangla Fields -->
+                                            <div class="tab-pane fade" id="bangla" role="tabpanel">
+                                                <div class="alert alert-info">
+                                                    <i class="fas fa-info-circle"></i> These fields are optional. If left empty, English content will be displayed.
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="title_bn">Title (Bangla)</label>
+                                                    <input type="text" class="form-control" id="title_bn" name="title_bn" placeholder="শিরোনাম লিখুন" value="{{ old('title_bn') }}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="slug_bn">Slug (Bangla)</label>
+                                                    <input type="text" class="form-control" id="slug_bn" name="slug_bn" placeholder="বাংলা স্লাগ" value="{{ old('slug_bn') }}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="content_bn">Content (Bangla)</label>
+                                                    <textarea class="form-control" id="content_bn" name="content_bn" placeholder="বিষয়বস্তু লিখুন">{{ old('content_bn') }}</textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="publisher_bn">Publisher (Bangla)</label>
+                                                    <input type="text" class="form-control" id="publisher_bn" name="publisher_bn" placeholder="প্রকাশকের নাম" value="{{ old('publisher_bn') }}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="reporter_bn">Reporter (Bangla)</label>
+                                                    <input type="text" class="form-control" id="reporter_bn" name="reporter_bn" placeholder="প্রতিবেদকের নাম" value="{{ old('reporter_bn') }}"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="location_bn">Location (Bangla)</label>
+                                                    <input type="text" class="form-control" id="location_bn" name="location_bn" placeholder="অবস্থান" value="{{ old('location_bn') }}"/>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mx-auto">
@@ -109,18 +167,6 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="publisher">Publisher</label>
-                                            <input type="text" class="form-control" id="publisher" name="publisher" placeholder="Enter publisher name" value="{{ old('publisher') }}"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="reporter">Reporter</label>
-                                            <input type="text" class="form-control" id="reporter" name="reporter" placeholder="Enter reporter name" value="{{ old('reporter') }}"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="location">Location</label>
-                                            <input type="text" class="form-control" id="location" name="location" placeholder="Enter location" value="{{ old('location') }}"/>
-                                        </div>
-                                        <div class="form-group">
                                             <label>Links</label>
                                             <div id="links-container">
                                                 <div class="link-item p-3 mb-2" style="border: 1px solid #ccc; border-radius: 5px;">
@@ -169,6 +215,11 @@
         $('#title').on("input", () => {
             $('#slug').val($.slugify($('#title').val()));
         });
+
+        $('#title_bn').on("input", () => {
+            $('#slug_bn').val($.slugify($('#title_bn').val()));
+        });
+
         $('#category').select2({
             theme: 'bootstrap4'
         });
