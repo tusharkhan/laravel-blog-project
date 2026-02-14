@@ -24,6 +24,7 @@ use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Frontend\TagController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\LocaleController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 // Locale switching route
@@ -129,3 +130,12 @@ Route::name('dashboard.')->prefix('/dashboard')->middleware(['auth'])->group(fun
         Route::post('/menus/footer', [MenuController::class, 'footerUpdate'])->name('menus.footer.update');
     });
 });
+
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+
+    return 'Cache Cleared';
+})->name('cache.clear');
