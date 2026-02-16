@@ -23,15 +23,15 @@
                 </nav>
             </div>
             <div class="header-right">
-                <div class="theme-switch-wrapper">
-                    <label class="theme-switch" for="checkbox">
-                        <input type="checkbox" id="checkbox" />
-                        <span class="slider round ">
-                            <i class="lar la-sun icon-light"></i>
-                            <i class="lar la-moon icon-dark"></i>
-                        </span>
-                    </label>
-                </div>
+{{--                <div class="theme-switch-wrapper">--}}
+{{--                    <label class="theme-switch" for="checkbox">--}}
+{{--                        <input type="checkbox" id="checkbox" />--}}
+{{--                        <span class="slider round ">--}}
+{{--                            <i class="lar la-sun icon-light"></i>--}}
+{{--                            <i class="lar la-moon icon-dark"></i>--}}
+{{--                        </span>--}}
+{{--                    </label>--}}
+{{--                </div>--}}
                 <div class="language-switcher" style="margin-left: 15px; margin-right: 15px;">
                     <div class="dropdown">
                         <a class="btn btn-sm dropdown-toggle" href="#" role="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: var(--color-default); border: 1px solid var(--gray); padding: 5px 12px; border-radius: 5px;">

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Utills\Helper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -117,5 +118,11 @@ class Post extends Model
         $locale = $locale ?? app()->getLocale();
 
         return $locale === 'bn' && $this->location_bn ? $this->location_bn : $this->location;
+    }
+
+    public function getLocalizedCreatedAt()
+    {
+        $locale = app()->getLocale();
+        return $locale === 'bn' ?  Helper::englishToBanglaDateConverter($this->created_at, 'F d, Y') : $this->created_at->format('d M, Y');
     }
 }

@@ -1232,7 +1232,7 @@ ul {
 .header {
   background-color: #ffffff;
   border-bottom: 1px solid #E6E7E7;
-  height: 100px;
+  height: 60px;
 }
 
 .header-scroll {
@@ -1263,7 +1263,7 @@ ul {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 100px;
+  height: 60px;
 }
 
 .header-area .logo {
