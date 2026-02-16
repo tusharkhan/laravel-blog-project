@@ -68,6 +68,7 @@ return [
     'next' => 'Next',
     'email_or_username' => 'Email or Username',
     'dont_have_an_account' => 'Don\'t have an account?',
-    'create_one' => 'Create One'
+    'create_one' => 'Create One',
+    'links' => 'Links',
 ];
 

@@ -7,63 +7,48 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-lg-12">
-                <div class="post-single-image">
-                    <img src="{{ asset("uploads/post/".$post->thumbnail) }}" alt="{{ $post->getLocalizedTitle() }}"/>
+                <div class="post-single-image mb-4">
+                    <img src="{{ asset("uploads/post/".$post->thumbnail) }}" alt="{{ $post->getLocalizedTitle() }}" class="img-fluid"/>
                 </div>
                 <div class="post-single-body">
                     <div class="post-single-title">
                         <h1>{{ $post->getLocalizedTitle() }}</h1>
-                        <ul class="entry-meta p-1">
-                            <li class="post-author-img">
-                                {{ __('messages.publisher') }} : {{ $post->getLocalizedPublisher() }}
-                            </li>
-                            <li class="post-author">
-                                {{ __('messages.reporter') }} : {{ $post->getLocalizedReporter() }}
-                            </li>
-                            <li class="entry-cat">
-                                {{ __('messages.location') }} : {{ $post->getLocalizedLocation() }}
-                            </li>
-                            <li class="post-date"> {{ __('messages.published') }} : {{ $post->getLocalizedCreatedAt() }}</li>
-                        </ul>
+                        <div class="entry-meta p-1">
+                            <div class="row">
+                                <div class="col-md-6 mb-2">
+                                    <p class="post-author-img mb-1">
+                                        <span class="text-dark">{{ __('messages.publisher') }}</span> : {{ $post->getLocalizedPublisher() }}
+                                    </p>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <p class="post-author mb-1">
+                                        <span class="text-dark">{{ __('messages.reporter') }}</span> : {{ $post->getLocalizedReporter() }}
+                                    </p>
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <p class="entry-cat mb-1">
+                                        <span class="text-dark">{{ __('messages.location') }}</span> : {{ $post->getLocalizedLocation() }}
+                                    </p>
+                                </div>
+
+                                <div class="col-md-6 mb-2">
+                                    <p class="post-date mb-1"> <span class="text-dark">{{ __('messages.published') }}</span> : {{ $post->getLocalizedCreatedAt() }}</p>
+                                </div>
+
+                                <div class="col-md-6 mb-2">
+                                    <p class="entry-cat mb-1">
+                                        <span class="text-dark">{{ __('messages.links') }} </span> : {!! $post->getLinks() !!}
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                     <div class="post-single-content">
                         {!! $post->getLocalizedContent() !!}
                     </div>
                     <div class="post-single-bottom">
-                        @if ($post->getLocalizedPublisher() || $post->getLocalizedReporter() || $post->getLocalizedLocation())
-                        <div class="post-meta-info mb-4">
-                            @if ($post->getLocalizedPublisher())
-                            <p><strong>{{ app()->getLocale() == 'bn' ? 'প্রকাশক:' : 'Publisher:' }}</strong> {{ $post->getLocalizedPublisher() }}</p>
-                            @endif
-                            @if ($post->getLocalizedReporter())
-                            <p><strong>{{ app()->getLocale() == 'bn' ? 'প্রতিবেদক:' : 'Reporter:' }}</strong> {{ $post->getLocalizedReporter() }}</p>
-                            @endif
-                            @if ($post->getLocalizedLocation())
-                            <p><strong>{{ app()->getLocale() == 'bn' ? 'অবস্থান:' : 'Location:' }}</strong> {{ $post->getLocalizedLocation() }}</p>
-                            @endif
-                        </div>
-                        @endif
-                        @if ($post->links_count > 0)
-                            <div class="post-links ">
-                                <p><strong>{{ app()->getLocale() == 'bn' ? 'লিংক:' : 'Links:' }}</strong>
-                                    @foreach ($post->links as $link)
-                                    <a href="{{ $link->url }}" target="_blank" rel="noopener noreferrer">{{ $link->title }}</a>@if (!$loop->last), @endif
-                                    @endforeach
-                                </p>
-                            </div>
-                        @endif
-                        @if ($post->tags_count > 0)
-                        <div class="tags">
-                            <p>{{ app()->getLocale() == 'bn' ? 'ট্যাগ:' : 'Tags:' }}</p>
-                            <ul class="list-inline">
-                                @foreach ($post->tags as $tag)
-                                <li>
-                                    <a href="{{ route("frontend.tag", $str::slug($tag->name)) }}">{{ $tag->name }}</a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
+
                         <div class="social-media">
                             <p>{{ app()->getLocale() == 'bn' ? 'শেয়ার করুন:' : 'Share on :' }}</p>
                             <ul class="list-inline">
@@ -85,6 +70,7 @@
                             </ul>
                         </div>
                     </div>
+                    <!-- TODO : remove this and add related post -->
                     @include("frontend.post.inc.author")
                     @include("frontend.post.inc.comment")
                 </div>

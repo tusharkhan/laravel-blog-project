@@ -69,5 +69,6 @@ return [
     'email_or_username' => 'ইমেল অথবা ব্যবহারকারীর নাম',
     'dont_have_an_account' => 'অ্যাকাউন্ট নেই?',
     'create_one' => 'তৈরি করুন',
+    'links' => 'লিংকসমূহ',
 ];
 
