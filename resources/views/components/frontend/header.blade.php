@@ -60,7 +60,7 @@
                 </div>
                 @else
                 <div class="botton-sub">
-                    <a href="{{ route("auth.login") }}" class="btn-subscribe">Log In</a>
+                    <a href="{{ route("auth.login") }}" class="btn-subscribe">{{ __('messages.login') }}</a>
                 </div>
                 @endauth
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
