@@ -44,29 +44,34 @@
                                 <p class="m-0">{{ session("success") }}</p>
                             </div>
                             @endif
-                            <form action="{{ route("dashboard.categories.update", $category->id) }}" enctype="multipart/form-data" method="POST">
+                            <form action="{{ route("dashboard.categories.update", $category->id) }}" method="POST">
                                 @csrf
                                 @method("PUT")
                                 <div class="row">
-                                    <div class="col-md-8 mx-auto">
+                                    <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="title">Title</label>
-                                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" value="{{ $category->title }}"/>
+                                            <label for="title">Title (English)</label>
+                                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter title in English" value="{{ $category->title }}"/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="slug">Slug</label>
-                                            <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter slug" value="{{ $category->slug }}"/>
+                                            <label for="title_bn">Title (Bangla)</label>
+                                            <input type="text" class="form-control" id="title_bn" name="title_bn" placeholder="শিরোনাম (বাংলায়)" value="{{ $category->title_bn }}"/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="description">Description</label>
-                                            <textarea id="description" name="description" placeholder="Enter description" class="form-control">{{ $category->description }}</textarea>
+                                            <label for="slug">Slug (English)</label>
+                                            <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter slug in English" value="{{ $category->slug }}"/>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4 mx-auto">
                                         <div class="form-group">
-                                            <label for="image">Image</label>
-                                            <input type="file" class="form-control" id="image" name="image" accept="image/*"/>
-                                            <img id="imagepreview" class="img-fluid img-thumbnail mt-3" src="{{ asset("uploads/category/".($category->image ?? "default.webp")) }}"/>
+                                            <label for="slug_bn">Slug (Bangla)</label>
+                                            <input type="text" class="form-control" id="slug_bn" name="slug_bn" placeholder="স্লাগ (বাংলায়)" value="{{ $category->slug_bn }}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description">Description (English)</label>
+                                            <textarea id="description" name="description" placeholder="Enter description in English" class="form-control">{{ $category->description }}</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description_bn">Description (Bangla)</label>
+                                            <textarea id="description_bn" name="description_bn" placeholder="বিবরণ (বাংলায়)" class="form-control">{{ $category->description_bn }}</textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="status">Status</label>
@@ -102,26 +107,6 @@
     $(document).ready(function() {
         $('#title').on("input", () => {
             $('#slug').val($.slugify($('#title').val()));
-        });
-        function readURL(input) {
-            if (input.files && input.files[0] && input.files[0].type.includes("image")) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#imagepreview').removeClass("d-none");
-                    $('#imagepreview').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            } else {
-                $("#image").val('');
-                $('#imagepreview').addClass("d-none");
-                Swal.fire({
-                    icon: "error",
-                    text: "Select a valid image!"
-                });
-            }
-        }
-        $("#image").change(function(){
-            readURL(this);
         });
     });
 </script>

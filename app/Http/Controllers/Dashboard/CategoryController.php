@@ -7,7 +7,6 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
@@ -25,21 +24,20 @@ class CategoryController extends Controller
     public function store(Request $request) {
         $validated = $request->validate([
             "title" => ["required", "string", "max:150"],
+            "title_bn" => ["nullable", "string", "max:150"],
             "slug" => ["required", "max:150", "unique:categories,slug"],
+            "slug_bn" => ["nullable", "max:150"],
             "description" => ["nullable", "string"],
-            "image" => ["nullable", "image"],
+            "description_bn" => ["nullable", "string"],
             "status" => ["required", Rule::in(["0", "1"])],
         ]);
-        if (Arr::has($validated, "image")) {
-            $image = $request->file("image");
-            $imageName = md5(time().rand(11111, 99999)).".".$image->extension();
-            $image->move(public_path("uploads/category"), $imageName);
-        }
         Category::create([
             "title" => $validated["title"],
+            "title_bn" => Arr::has($validated, "title_bn") ? $validated["title_bn"] : null,
             "slug" => $validated["slug"],
+            "slug_bn" => Arr::has($validated, "slug_bn") ? $validated["slug_bn"] : null,
             "description" => Arr::has($validated, "description") ? $validated["description"] : null,
-            "image" => Arr::has($validated, "image") ? $imageName : null,
+            "description_bn" => Arr::has($validated, "description_bn") ? $validated["description_bn"] : null,
             "status" => $validated["status"],
         ]);
         return redirect()->route("dashboard.categories.index")->with("success", "Category created!");
@@ -65,26 +63,20 @@ class CategoryController extends Controller
         if ($category) {
             $validated = $request->validate([
                 "title" => ["required", "string", "max:150"],
+                "title_bn" => ["nullable", "string", "max:150"],
                 "slug" => ["required", "max:150", Rule::unique("categories", "slug")->ignore($id)],
+                "slug_bn" => ["nullable", "max:150"],
                 "description" => ["nullable", "string"],
-                "image" => ["nullable", "image"],
+                "description_bn" => ["nullable", "string"],
                 "status" => ["required", Rule::in(["0", "1"])],
             ]);
             $category->title = $validated["title"];
+            $category->title_bn = Arr::has($validated, "title_bn") ? $validated["title_bn"] : null;
             $category->slug = $validated["slug"];
+            $category->slug_bn = Arr::has($validated, "slug_bn") ? $validated["slug_bn"] : null;
             $category->description = Arr::has($validated, "description") ? $validated["description"] : null;
+            $category->description_bn = Arr::has($validated, "description_bn") ? $validated["description_bn"] : null;
             $category->status = $validated["status"];
-            if (Arr::has($validated, "image")) {
-                $image = $request->file("image");
-                $imageName = md5(time().rand(11111, 99999)).".".$image->extension();
-                $image->move(public_path("uploads/category"), $imageName);
-                if ($category->image) {
-                    if (File::exists(public_path("uploads/category/".$category->image))) {
-                        File::delete(public_path("uploads/category/".$category->image));
-                    }
-                }
-                $category->image = $imageName;
-            }
             $category->save();
             return redirect()->route("dashboard.categories.index")->with("success", "Category updated!");
         }
@@ -130,9 +122,6 @@ class CategoryController extends Controller
     public function delete($id) {
         $category = Category::onlyTrashed()->find($id);
         if ($category) {
-            if (File::exists(public_path("uploads/category/".$category->image))) {
-                File::delete(public_path("uploads/category/".$category->image));
-            }
             $category->posts()->forceDelete();
             $category->forceDelete();
             return back()->with("success", "Category deleted!");
