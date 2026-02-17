@@ -15,41 +15,17 @@
                  </div>
              </div>
          </div>
+        <hr>
      </div>
 </div>
 <section class="blog-layout-2">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
-                @forelse ($posts as $post)
-                <div class="post-list post-list-style2">
-                    <div class="post-list-image">
-                        <a href="{{ route("frontend.post", $post->getLocalizedSlug()) }}">
-                            <img src="{{ asset("uploads/post/".$post->thumbnail) }}" alt="{{ $post->getLocalizedTitle() }}"/>
-                        </a>
-                    </div>
-                    <div class="post-list-content">
-                        <h3 class="entry-title">
-                            <a href="{{ route("frontend.post", $post->getLocalizedSlug()) }}">{{ $post->getLocalizedTitle() }}</a>
-                        </h3>
-                        <ul class="entry-meta">
-                            <li class="post-author-img"><img src="{{ asset("uploads/author/".($post->user->profile ?? "default.webp")) }}" alt="{{ $post->user->name }}"/></li>
-                            <li class="post-author"> <a href="{{ route("frontend.user", $post->user->username) }}">{{ $post->user->name }}</a></li>
-                            <li class="entry-cat"><a href="{{ route("frontend.category", $post->category->slug) }}" class="category-style-1"><span class="line"></span>{{ $post->category->title }}</a></li>
-                            <li class="post-date"><span class="line"></span>{{ $post->created_at->format("F d, Y") }}</li>
-                        </ul>
-                        <div class="post-exerpt">
-                            <p>{{ $str::words(strip_tags($post->getLocalizedContent()), 20) }}</p>
-                        </div>
-                        <div class="post-btn">
-                            <a href="{{ route("frontend.post", $post->getLocalizedSlug()) }}" class="btn-read-more">{{ app()->getLocale() == 'bn' ? 'আরও পড়ুন' : 'Continue Reading' }} <i class="las la-long-arrow-alt-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                @empty
+            @forelse ($posts as $post)
+                    @include('components.blog-cart', $post)
+            @empty
                 <div>{{ app()->getLocale() == 'bn' ? 'কোনো পোস্ট পাওয়া যায়নি!' : 'No post found!' }}</div>
-                @endforelse
-            </div>
+            @endforelse
         </div>
     </div>
 </section>
