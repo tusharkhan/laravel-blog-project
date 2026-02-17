@@ -2731,7 +2731,7 @@ input:checked + .slider:before {
 }
 
 .post-single-body {
-  padding: 0px 100px;
+  /*padding: 0px 100px;*/
 }
 
 .post-single-title {

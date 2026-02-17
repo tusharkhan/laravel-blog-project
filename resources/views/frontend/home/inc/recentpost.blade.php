@@ -15,10 +15,10 @@
                     </div>
                     <div class="card-body">
                         <ul class="entry-meta carf-font ">
-                            <li class="entry-cat">
+                            <li class="entry-cat badge badge-info">
                                 {{ app()->getLocale() == 'bn' ? "প্রকাশক" : "Publisher" }} : {{ $recentpost->getLocalizedPublisher() }}
                             </li>
-                            <li class="post-date">
+                            <li class="post-date badge badge-secondary">
                                 {{ app()->getLocale() == 'bn' ? "প্রকাশিত তারিখ:" : "Published" }} : <span class="line"></span>{{ $recentpost->getLocalizedCreatedAt() }}
                             </li>
                         </ul>
