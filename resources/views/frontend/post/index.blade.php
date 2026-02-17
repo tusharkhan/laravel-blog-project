@@ -71,8 +71,9 @@
                         </div>
                     </div>
                     <!-- TODO : remove this and add related post -->
-                    @include("frontend.post.inc.author")
-                    @include("frontend.post.inc.comment")
+{{--                    @include("frontend.post.inc.author")--}}
+{{--                    @include("frontend.post.inc.comment")--}}
+                    @include("frontend.post.inc.relate_post")
                 </div>
             </div>
         </div>
