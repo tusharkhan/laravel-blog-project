@@ -1,3 +1,10 @@
+hr {
+    height: 1px;
+    background: linear-gradient(90deg, #191B1D, transparent);
+    border-radius: 2px;
+    margin-top: 15px;
+}
+
 .post-card-image>a>img {
     height: 170px !important;
     object-fit: cover;
@@ -9,6 +16,131 @@
 
 .entry-title{
     font-size: 18px;
+}
+
+/* Category Section Styling */
+.category-section {
+    padding-bottom: 30px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.category-section:last-child {
+    border-bottom: none;
+}
+
+.category-header {
+    /*background: linear-gradient(135deg, #f5f7fa 0%, #f9fafb 100%);*/
+    padding: 20px;
+    /*border-radius: 8px;*/
+    /*border-left: 4px solid #007bff;*/
+}
+
+.category-title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.category-section-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+    transition: color 0.3s ease;
+}
+
+.category-section-title a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.category-section-title a:hover {
+    color: #007bff;
+}
+
+.category-section-title i {
+    font-size: 24px;
+    color: #007bff;
+}
+
+.category-divider {
+    height: 1px;
+    background: linear-gradient(90deg, #191B1D, transparent);
+    border-radius: 2px;
+    margin-top: 15px;
+}
+
+.btn-outline-primary {
+    border-color: #007bff;
+    color: #007bff;
+    font-weight: 500;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Post Card Hover Effects */
+.post-card {
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+.post-card:hover .post-card-image img {
+    transform: scale(1.05);
+}
+
+.post-card-image {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+}
+
+.post-card-image img {
+    transition: transform 0.4s ease-in-out;
+    object-fit: cover;
+    height: 100%;
+}
+
+/* Post Meta Styling */
+.post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.post-meta .badge {
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Entry Title */
+.entry-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    min-height: 48px;
 }
 
 /* Related Posts Section Styles */

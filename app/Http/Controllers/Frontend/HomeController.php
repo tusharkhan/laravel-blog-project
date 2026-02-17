@@ -10,9 +10,17 @@ use App\Models\Post;
 class HomeController extends Controller
 {
     public function index() {
-        $recentposts = Post::with("category")->where("status", true)->orderBy("id", "DESC")->paginate(10);
-        $featuredposts = Post::with(["category", "user"])->where("status", true)->where("is_featured", true)->orderBy("id", "DESC")->limit(10)->get();
-        $categories = Category::where("status", true)->orderBy("title", "ASC")->limit(10)->get();
-        return view("frontend.home.index", compact("recentposts", "featuredposts", "categories"));
+        // Get all active categories with their recent posts and total post count
+        $categories = Category::where("status", true)
+            ->withCount('posts')
+            ->with(['posts' => function($query) {
+                $query->where("status", true)
+                    ->orderBy("id", "DESC")
+                    ->get();
+            }])
+            ->orderBy("id", "DESC")
+            ->get();
+
+        return view("frontend.home.index", compact("categories"));
     }
 }
