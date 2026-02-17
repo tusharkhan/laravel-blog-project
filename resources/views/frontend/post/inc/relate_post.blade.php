@@ -18,10 +18,10 @@
                     <div class="card-body d-flex flex-column">
                         <div class="entry-meta related-post-meta mb-2">
                             <span class="badge badge-info mr-2">
-                                <i class="las la-user"></i> {{ $recentpost->getLocalizedPublisher() }}
+                                {{ app()->getLocale() == 'bn' ? "প্রকাশক" : "Publisher" }} : {{ $recentpost->getLocalizedPublisher() }}
                             </span>
                             <span class="badge badge-secondary">
-                                <i class="las la-calendar"></i> {{ $recentpost->getLocalizedCreatedAt() }}
+                                {{ app()->getLocale() == 'bn' ? "প্রকাশিত তারিখ:" : "Published At" }} : {{ $recentpost->getLocalizedCreatedAt() }}
                             </span>
                         </div>
                         <h5 class="entry-title card-title flex-grow-1">

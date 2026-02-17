@@ -19,7 +19,7 @@
                                 {{ app()->getLocale() == 'bn' ? "প্রকাশক" : "Publisher" }} : {{ $recentpost->getLocalizedPublisher() }}
                             </li>
                             <li class="post-date badge badge-secondary">
-                                {{ app()->getLocale() == 'bn' ? "প্রকাশিত তারিখ:" : "Published" }} : <span class="line"></span>{{ $recentpost->getLocalizedCreatedAt() }}
+                                {{ app()->getLocale() == 'bn' ? "প্রকাশিত তারিখ:" : "Published At" }} : <span class="line"></span>{{ $recentpost->getLocalizedCreatedAt() }}
                             </li>
                         </ul>
                         <h5 class="entry-title card-title">
