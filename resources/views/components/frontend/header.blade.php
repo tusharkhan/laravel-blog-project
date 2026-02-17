@@ -36,24 +36,24 @@
                     <div class="dropdown">
                         <a class="btn btn-sm dropdown-toggle" href="#" role="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: var(--color-default); border: 1px solid var(--gray); padding: 5px 12px; border-radius: 5px;">
                             @if(app()->getLocale() == 'bn')
-                                <i class="las la-globe"></i> বাংলা
+                                🇧🇩 বাংলা
                             @else
-                                <i class="las la-globe"></i> English
+                                🇬🇧 English
                             @endif
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
                             <a class="dropdown-item{{ app()->getLocale() == 'en' ? ' active' : '' }}" href="{{ route('locale.switch', 'en') }}">
-                                <i class="las la-check{{ app()->getLocale() != 'en' ? ' invisible' : '' }}"></i> English
+                                <i class="las la-check{{ app()->getLocale() != 'en' ? ' invisible' : '' }}"></i> 🇬🇧 English
                             </a>
                             <a class="dropdown-item{{ app()->getLocale() == 'bn' ? ' active' : '' }}" href="{{ route('locale.switch', 'bn') }}">
-                                <i class="las la-check{{ app()->getLocale() != 'bn' ? ' invisible' : '' }}"></i> বাংলা (Bangla)
+                                <i class="las la-check{{ app()->getLocale() != 'bn' ? ' invisible' : '' }}"></i> 🇧🇩 বাংলা (Bangla)
                             </a>
                         </div>
                     </div>
                 </div>
-                <div class="search-icon">
-                    <i class="las la-search"></i>
-                </div>
+{{--                <div class="search-icon">--}}
+{{--                    <i class="las la-search"></i>--}}
+{{--                </div>--}}
                 @auth
                 <div class="botton-sub">
                     <a href="{{ route("dashboard.home") }}" class="btn-subscribe">Dashboard</a>
