@@ -139,3 +139,8 @@ Route::get('/clear-cache', function () {
 
     return 'Cache Cleared';
 })->name('cache.clear');
+
+Route::get('/seed', function () {
+    Artisan::call('db:seed');
+    return 'Database seeded successfully.';
+});

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Tusharkhan\BanglaFaker\Facade\BanglaFaker;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
@@ -30,18 +31,18 @@ class PostFactory extends Factory
                 return \App\Models\Category::all()->random()->id;
             },
             'title' => fake()->sentence(),
-            'title_bn' => fake()->sentence(),
+            'title_bn' => BanglaFaker::sentence(),
             'slug' => fake()->slug(),
             'slug_bn' => fake()->slug(),
             'content' => fake()->paragraphs(3, true),
-            'content_bn' => fake()->paragraphs(3, true),
+            'content_bn' => BanglaFaker::paragraph(3, true),
             'thumbnail' => $image,
             'publisher' => fake()->company(),
-            'publisher_bn' => fake()->company(),
+            'publisher_bn' => BanglaFaker::sentence(),
             'reporter' => fake()->name(),
-            'reporter_bn' => fake()->name(),
+            'reporter_bn' => BanglaFaker::firstNameMale(),
             'location' => fake()->city(),
-            'location_bn' => fake()->city(),
+            'location_bn' => BanglaFaker::address(),
             'status' => true,
             'is_featured' => fake()->boolean(20),
             'enable_comment' => fake()->boolean(80),
