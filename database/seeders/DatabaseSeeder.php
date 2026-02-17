@@ -29,8 +29,13 @@ class DatabaseSeeder extends Seeder
         User::factory(70)->create();
         Category::factory(5)->create();
         Tag::factory(1000)->create();
-        \App\Models\Post::factory(200)->create();
+        \App\Models\Post::factory(50)->create();
         \App\Models\Comment::factory(500)->create();
+
+        // Create PostLinks for each post
+        Post::all()->each(function ($post) {
+            \App\Models\PostLink::factory(rand(2, 5))->create(['post_id' => $post->id]);
+        });
 
         \App\Models\SiteSetting::create([
             'site_title' => 'Oredoo',

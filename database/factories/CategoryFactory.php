@@ -18,9 +18,11 @@ class CategoryFactory extends Factory
     {
         return [
             'title' => fake()->word(),
+            'title_bn' => fake()->word(),
             'slug' => fake()->slug(),
+            'slug_bn' => fake()->slug(),
             'description' => fake()->paragraph(),
-            'image' => fake()->imageUrl(60, 60, 'categories', true),
+            'description_bn' => fake()->paragraph(),
             'status' => true,
         ];
     }
