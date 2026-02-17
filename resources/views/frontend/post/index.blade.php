@@ -14,6 +14,7 @@
                     <div class="post-single-title">
                         <h1>{{ $post->getLocalizedTitle() }}</h1>
                         <div class="entry-meta p-1">
+                            <!-- Additional Info -->
                             <div class="row">
                                 <div class="col-md-6 mb-2">
                                     <p class="post-author-img mb-1">

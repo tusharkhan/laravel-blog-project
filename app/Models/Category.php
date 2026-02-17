@@ -14,9 +14,11 @@ class Category extends Model
 
     protected $fillable = [
         "title",
+        "title_bn",
         "slug",
+        "slug_bn",
         "description",
-        "image",
+        "description_bn",
         "status",
     ];
 
@@ -26,5 +28,19 @@ class Category extends Model
 
     public function posts() {
         return $this->hasMany(Post::class);
+    }
+
+    public function getLocalizedTitle($local = null)
+    {
+        $local = $local ?? app()->getLocale();
+
+        return $local === 'bn' && $this->title_bn ? $this->title_bn : $this->title;
+    }
+
+    public function getLocalizedSlug($local = null)
+    {
+        $local = $local ?? app()->getLocale();
+
+        return $local === 'bn' && $this->slug_bn ? $this->slug_bn : $this->slug;
     }
 }

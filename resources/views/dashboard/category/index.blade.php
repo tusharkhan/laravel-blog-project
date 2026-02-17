@@ -48,8 +48,8 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center">#</th>
-                                            <th class="text-center">Image</th>
-                                            <th class="text-center">Title</th>
+                                            <th class="text-center">Title (English)</th>
+                                            <th class="text-center">Title (Bangla)</th>
                                             <th class="text-center">Total Posts</th>
                                             <th class="text-center">Status</th>
                                             <th class="text-center">Action</th>
@@ -59,10 +59,8 @@
                                         @forelse ($categories as $category)
                                         <tr>
                                             <td class="text-center">{{ $loop->index + $categories->firstItem() }}</td>
-                                            <td class="text-center">
-                                                <img width="100px" height="100px" src="{{ asset("uploads/category/".($category->image ?? "default.webp")) }}" alt="{{ $category->title }}"/>
-                                            </td>
                                             <td class="text-center">{{ $category->title }}</td>
+                                            <td class="text-center">{{ $category->title_bn ?? 'N/A' }}</td>
                                             <td class="text-center">{{ $category->posts_count }}</td>
                                             <td class="text-center"><a href="{{ route("dashboard.categories.status", $category->id) }}"><span class="badge bg-{{ $category->status ? "success" : "warning" }}">{{ $category->status ? "Active" : "Inactive" }}</span></a></td>
                                             <td class="text-center">

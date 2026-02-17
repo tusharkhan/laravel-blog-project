@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function index($slug) {
-        $category = Category::where("slug", $slug)->where("status", true)->first();
+        $category = Category::where("slug", $slug)->orWhere('slug_bn', $slug)->where("status", true)->first();
         if ($category) {
             $str = Str::class;
             $posts = $category->posts()->with(["category", "user"])->where("status", true)->orderBy("id", "DESC")->paginate(10);

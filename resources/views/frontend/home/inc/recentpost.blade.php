@@ -13,8 +13,8 @@
                     <div class="category-title-wrapper d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="category-section-title mb-0">
-                                <a href="{{ route("frontend.category", $category->slug) }}" class="text-dark">
-                                    <i class="las la-folder"></i> {{ $category->title }}
+                                <a href="{{ route("frontend.category", $category->getLocalizedSlug()) }}" class="text-dark">
+                                    <i class="las la-folder"></i> {{ $category->getLocalizedTitle() }}
                                 </a>
                             </h4>
                         </div>

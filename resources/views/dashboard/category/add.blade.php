@@ -44,34 +44,39 @@
                                 <p class="m-0">{{ session("success") }}</p>
                             </div>
                             @endif
-                            <form action="{{ route("dashboard.categories.store") }}" enctype="multipart/form-data" method="POST">
+                            <form action="{{ route("dashboard.categories.store") }}" method="POST">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-md-8 mx-auto">
+                                    <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="title">Title</label>
-                                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" value="{{ old('title') }}"/>
+                                            <label for="title">Title (English)</label>
+                                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter title in English" value="{{ old('title') }}"/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="slug">Slug</label>
-                                            <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter slug" value="{{ old('slug') }}"/>
+                                            <label for="title_bn">Title (Bangla)</label>
+                                            <input type="text" class="form-control" id="title_bn" name="title_bn" placeholder="শিরোনাম (বাংলায়)" value="{{ old('title_bn') }}"/>
                                         </div>
                                         <div class="form-group">
-                                            <label for="description">Description</label>
-                                            <textarea id="description" name="description" placeholder="Enter description" class="form-control"></textarea>
+                                            <label for="slug">Slug (English)</label>
+                                            <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter slug in English" value="{{ old('slug') }}"/>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4 mx-auto">
                                         <div class="form-group">
-                                            <label for="image">Image</label>
-                                            <input type="file" class="form-control" id="image" name="image" accept="image/*"/>
-                                            <img id="imagepreview" class="img-fluid img-thumbnail mt-3 d-none"/>
+                                            <label for="slug_bn">Slug (Bangla)</label>
+                                            <input type="text" class="form-control" id="slug_bn" name="slug_bn" placeholder="স্লাগ (বাংলায়)" value="{{ old('slug_bn') }}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description">Description (English)</label>
+                                            <textarea id="description" name="description" placeholder="Enter description in English" class="form-control">{{ old('description') }}</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description_bn">Description (Bangla)</label>
+                                            <textarea id="description_bn" name="description_bn" placeholder="বিবরণ (বাংলায়)" class="form-control">{{ old('description_bn') }}</textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="status">Status</label>
                                             <select class="form-control" name="status" id="status">
-                                                <option value="1">Active</option>
-                                                <option value="0">Inactive</option>
+                                                <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Active</option>
+                                                <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Inactive</option>
                                             </select>
                                         </div>
                                     </div>
@@ -95,26 +100,6 @@
     $(document).ready(function() {
         $('#title').on("input", () => {
             $('#slug').val($.slugify($('#title').val()));
-        });
-        function readURL(input) {
-            if (input.files && input.files[0] && input.files[0].type.includes("image")) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#imagepreview').removeClass("d-none");
-                    $('#imagepreview').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            } else {
-                $("#image").val('');
-                $('#imagepreview').addClass("d-none");
-                Swal.fire({
-                    icon: "error",
-                    text: "Select a valid image!"
-                });
-            }
-        }
-        $("#image").change(function(){
-            readURL(this);
         });
     });
 </script>
