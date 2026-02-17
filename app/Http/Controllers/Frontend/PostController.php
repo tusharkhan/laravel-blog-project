@@ -37,7 +37,9 @@ class PostController extends Controller
             $post->save();
             $str = Str::class;
 
-            return view('frontend.post.index', compact('post', 'str'));
+            $categoryPosts = $post->category->posts()->where('id', '!=', $post->id)->orderBy('id', 'DESC')->paginate(10);
+
+            return view('frontend.post.index', compact('post', 'str', 'categoryPosts'));
         }
 
         return abort(404);

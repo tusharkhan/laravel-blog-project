@@ -1,39 +1,43 @@
-<div class="col-lg-8 oredoo-content">
+<div class="col-lg-12 oredoo-content mt-10">
     <div class="theiaStickySidebar">
         <div class="section-title">
             <h3>{{ app()->getLocale() == 'bn' ? 'সাম্প্রতিক নিবন্ধ' : 'Recent Articles' }}</h3>
-            <p>{{ app()->getLocale() == 'bn' ? 'জীবনের সমস্ত বিষয়ে সবচেয়ে উল্লেখযোগ্য প্রবন্ধগুলি আবিষ্কার করুন।' : 'Discover the most outstanding articles in all topics of life.' }}</p>
+            <hr>
         </div>
-        @forelse ($recentposts as $recentpost)
-        <div class="post-list post-list-style4">
-            <div class="post-list-image">
-                <a href="{{ route("frontend.post", $recentpost->getLocalizedSlug()) }}">
-                    <img src="{{ asset("uploads/post/".$recentpost->thumbnail) }}" alt="{{ $recentpost->getLocalizedTitle() }}"/>
-                </a>
-            </div>
-            <div class="post-list-content">
-                <ul class="entry-meta">
-                    <li class="entry-cat">
-                        <a href="{{ route("frontend.category", $recentpost->category->slug) }}" class="category-style-1">{{ $recentpost->category->title }}</a>
-                    </li>
-                    <li class="post-date"> <span class="line"></span>{{ $recentpost->created_at->format("F d, Y") }}</li>
-                </ul>
-                <h5 class="entry-title">
-                    <a href="{{ route("frontend.post", $recentpost->getLocalizedSlug()) }}">{{ $recentpost->getLocalizedTitle() }}</a>
-                </h5>
 
-                <div class="post-btn">
-                    <a href="{{ route("frontend.post", $recentpost->getLocalizedSlug()) }}" class="btn-read-more">{{ app()->getLocale() == 'bn' ? 'আরও পড়ুন' : 'Continue Reading' }} <i class="las la-long-arrow-alt-right"></i></a>
+        @forelse ($categories as $category)
+            @if($category->posts->count() > 0)
+            <div class="category-section mb-5">
+                <!-- Category Header -->
+                <div class="category-header mb-4">
+                    <div class="category-title-wrapper d-flex align-items-center justify-content-between">
+                        <div>
+                            <h4 class="category-section-title mb-0">
+                                <a href="{{ route("frontend.category", $category->slug) }}" class="text-dark">
+                                    <i class="las la-folder"></i> {{ $category->title }}
+                                </a>
+                            </h4>
+                        </div>
+                        <a href="{{ route("frontend.category", $category->slug) }}" class="btn btn-sm btn-outline-dark">
+                            {{ app()->getLocale() == 'bn' ? 'সব দেখুন' : 'View All' }}
+                        </a>
+                    </div>
+                    <div class="category-divider"></div>
+                </div>
+
+                <!-- Category Posts Grid -->
+                <div class="row">
+                    @foreach($category->posts as $ind => $post)
+                        @include('components.blog-cart', $post)
+                        @if(++$ind == 4) @break @endif
+                    @endforeach
                 </div>
             </div>
-        </div>
+            @endif
         @empty
-        <div>No post found!</div>
-        @endforelse
-        <div class="pagination">
-            <div class="pagination-area">
-            {{ $recentposts->links("vendor.pagination.custom") }}
-            </div>
+        <div class="alert alert-info">
+            {{ app()->getLocale() == 'bn' ? 'কোনো পোস্ট পাওয়া যায়নি!' : 'No posts found!' }}
         </div>
+        @endforelse
     </div>
 </div>

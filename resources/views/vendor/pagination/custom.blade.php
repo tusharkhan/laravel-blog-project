@@ -13,9 +13,9 @@
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                 @if ($page == $paginator->currentPage())
-                <li><span class="active">{{ $page }}</span></li>
+                <li><span class="active">{{ app()->getLocale() == 'en' ? $page : \App\Utills\Helper::englishToBanglaNumberConverter($page) }}</span></li>
                 @else
-                <li><a href="{{ $url }}">{{ $page }}</a></li>
+                <li><a href="{{ $url }}">{{ app()->getLocale() == 'en' ? $page : \App\Utills\Helper::englishToBanglaNumberConverter($page) }}</a></li>
                 @endif
                 @endforeach
             @endif

@@ -1232,7 +1232,7 @@ ul {
 .header {
   background-color: #ffffff;
   border-bottom: 1px solid #E6E7E7;
-  height: 100px;
+  height: 60px;
 }
 
 .header-scroll {
@@ -1263,7 +1263,7 @@ ul {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 100px;
+  height: 60px;
 }
 
 .header-area .logo {
@@ -1698,9 +1698,8 @@ input:checked + .slider:before {
 }
 
 .section-heading-2 {
-  padding: 50px 0px;
+  padding: 10px 0px;
   width: 100%;
-  border-bottom: 1px solid #E6E7E7;
   text-align: center;
 }
 
@@ -2731,7 +2730,7 @@ input:checked + .slider:before {
 }
 
 .post-single-body {
-  padding: 0px 100px;
+  /*padding: 0px 100px;*/
 }
 
 .post-single-title {
