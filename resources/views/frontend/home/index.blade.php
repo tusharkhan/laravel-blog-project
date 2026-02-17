@@ -7,7 +7,6 @@
 {{-- @include("frontend.home.inc.featuredpost") --}}
 {{-- @include("frontend.home.inc.category") --}}
 
-
 <section class="section-feature-1">
     <div class="container-fluid">
         <div class="row">
