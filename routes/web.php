@@ -17,6 +17,7 @@ use App\Http\Controllers\Dashboard\TagController as DashboardTagController;
 use App\Http\Controllers\Dashboard\UserController as DashboardUserController;
 use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\CommentController;
+use App\Http\Controllers\Frontend\GalleryController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\PostController;
@@ -39,6 +40,7 @@ Route::name('frontend.')->group(function () {
     Route::get('/category/{slug}', [CategoryController::class, 'index'])->name('category');
     Route::get('/user/{username}', [UserController::class, 'index'])->name('user');
     Route::get('/tag/{name}', [TagController::class, 'index'])->name('tag');
+    Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
     Route::get('/page/{slug}', [PageController::class, 'index'])->name('page');
 });
 
