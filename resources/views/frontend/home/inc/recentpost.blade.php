@@ -18,7 +18,7 @@
                                 </a>
                             </h4>
                         </div>
-                        <a href="{{ route("frontend.category", $category->slug) }}" class="btn btn-sm btn-outline-dark">
+                        <a href="{{ route("frontend.category", $category->getLocalizedSlug()) }}" class="btn btn-sm btn-outline-dark">
                             {{ app()->getLocale() == 'bn' ? 'সব দেখুন' : 'View All' }}
                         </a>
                     </div>

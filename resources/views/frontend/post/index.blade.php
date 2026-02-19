@@ -18,27 +18,27 @@
                             <div class="row">
                                 <div class="col-md-6 mb-2">
                                     <p class="post-author-img mb-1">
-                                        <span class="text-dark">{{ __('messages.publisher') }}</span> : {{ $post->getLocalizedPublisher() }}
+                                        <span class="text-dark text-decoration-underline">{{ __('messages.publisher') }}</span> : {{ $post->getLocalizedPublisher() }}
                                     </p>
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <p class="post-author mb-1">
-                                        <span class="text-dark">{{ __('messages.reporter') }}</span> : {{ $post->getLocalizedReporter() }}
+                                        <span class="text-dark text-decoration-underline">{{ __('messages.reporter') }}</span> : {{ $post->getLocalizedReporter() }}
                                     </p>
                                 </div>
                                 <div class="col-md-6 mb-2">
                                     <p class="entry-cat mb-1">
-                                        <span class="text-dark">{{ __('messages.location') }}</span> : {{ $post->getLocalizedLocation() }}
+                                        <span class="text-dark text-decoration-underline">{{ __('messages.location') }}</span> : {{ $post->getLocalizedLocation() }}
                                     </p>
                                 </div>
 
                                 <div class="col-md-6 mb-2">
-                                    <p class="post-date mb-1"> <span class="text-dark">{{ __('messages.published') }}</span> : {{ $post->getLocalizedCreatedAt() }}</p>
+                                    <p class="post-date mb-1"> <span class="text-dark text-decoration-underline">{{ __('messages.published') }}</span> : {{ $post->getLocalizedCreatedAt() }}</p>
                                 </div>
 
                                 <div class="col-md-6 mb-2">
                                     <p class="entry-cat mb-1">
-                                        <span class="text-dark">{{ __('messages.links') }} </span> : {!! $post->getLinks() !!}
+                                        <span class="text-dark text-decoration-underline">{{ __('messages.links') }} </span> : {!! $post->getLinks() !!}
                                     </p>
                                 </div>
 

@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <link rel="icon" sizes="16x16" href="{{ asset("favicon.ico") }}"/>
+
+    @if(request()->route()->getName() == 'frontend.post')
+        <meta name="keywords" content="{{ $post->getLocalizedTitle() }}"/>
+        <meta name="description" content="{{ $post->getLocalizedContent() }}"/>
+        <meta property="og:title" content="{{ $post->getLocalizedTitle() }}"/>
+        <meta property="og:description" content="{{ $post->getLocalizedContent() }}"/>
+        <meta property="og:image" content="{{ asset("uploads/post/".$post->thumbnail) }}"/>
+        <meta property="og:url" content="{{ route("frontend.post", $post->slug) }}"/>
+        <meta property="og:type" content="article"/>
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:title" content="{{ $post->getLocalizedTitle() }}"/>
+        <meta name="twitter:description" content="{{ $post->getLocalizedContent() }}"/>
+        <meta name="twitter:image" content="{{ asset("uploads/post/".$post->thumbnail) }}"/>
+        <meta name="twitter:url" content="{{ route("frontend.post", $post->slug) }}">>
+    @endif
+
     <title>@yield("title")</title>
     <link rel="stylesheet" href="{{ asset("assets/frontend/css/bootstrap.min.css") }}"/>
     <link rel="stylesheet" href="{{ asset("assets/frontend/css/owl.carousel.css") }}"/>
