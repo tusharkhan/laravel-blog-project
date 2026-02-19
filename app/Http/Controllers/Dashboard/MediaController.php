@@ -40,7 +40,6 @@ class MediaController extends Controller
 
         $media = Media::create([
             "user_id"        => Auth::id(),
-            "file_name"      => "",
             "title"          => $request->title,
             "title_bn"       => $request->title_bn,
             "description"    => $request->description,

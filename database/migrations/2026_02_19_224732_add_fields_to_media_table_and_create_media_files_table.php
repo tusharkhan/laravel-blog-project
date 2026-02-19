@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('description_bn')->nullable()->after('description');
             $table->string('location')->nullable()->after('description_bn');
             $table->string('location_bn')->nullable()->after('location');
+            $table->dropColumn('file_name');
         });
 
         // Create media_files table for multiple images per media entry
