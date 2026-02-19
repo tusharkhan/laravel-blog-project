@@ -70,5 +70,15 @@ return [
     'dont_have_an_account' => 'অ্যাকাউন্ট নেই?',
     'create_one' => 'তৈরি করুন',
     'links' => 'লিংকসমূহ',
+
+    // Gallery
+    'gallery'           => 'গ্যালারি',
+    'filter_by_title'   => 'শিরোনাম দিয়ে খুঁজুন',
+    'filter_by_date'    => 'তারিখ দিয়ে ফিল্টার করুন',
+    'all_dates'         => 'সব তারিখ',
+    'filter'            => 'ফিল্টার',
+    'reset'             => 'রিসেট',
+    'images'            => 'ছবি',
+    'no_media_found'    => 'কোনো মিডিয়া পাওয়া যায়নি!',
 ];
 

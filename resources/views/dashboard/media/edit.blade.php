@@ -1,5 +1,5 @@
 @extends('dashboard.master')
-@section('title', 'New Media')
+@section('title', 'Edit Media')
 
 @section('content')
 <div class="content-wrapper">
@@ -7,13 +7,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">New Media</h1>
+                    <h1 class="m-0">Edit Media</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route("dashboard.home") }}">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="{{ route("dashboard.media.index") }}">All Media</a></li>
-                        <li class="breadcrumb-item active">New Media</li>
+                        <li class="breadcrumb-item active">Edit Media</li>
                     </ol>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">New Media</h3>
+                            <h3 class="card-title">Edit Media</h3>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
@@ -44,8 +44,10 @@
                                 <p class="m-0">{{ session("success") }}</p>
                             </div>
                             @endif
-                            <form action="{{ route("dashboard.media.store") }}" enctype="multipart/form-data" method="POST">
+
+                            <form action="{{ route("dashboard.media.update", $media->id) }}" enctype="multipart/form-data" method="POST">
                                 @csrf
+                                @method("PUT")
                                 <div class="row">
                                     <div class="col-md-12">
                                         <!-- Language Tabs -->
@@ -63,15 +65,15 @@
                                             <div class="tab-pane fade show active" id="english" role="tabpanel">
                                                 <div class="form-group">
                                                     <label for="title">Title (English)</label>
-                                                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" value="{{ old('title') }}"/>
+                                                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" value="{{ old('title', $media->title) }}"/>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="description">Description (English)</label>
-                                                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter description">{{ old('description') }}</textarea>
+                                                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter description">{{ old('description', $media->description) }}</textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="location">Location (English)</label>
-                                                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter location" value="{{ old('location') }}"/>
+                                                    <input type="text" class="form-control" id="location" name="location" placeholder="Enter location" value="{{ old('location', $media->location) }}"/>
                                                 </div>
                                             </div>
 
@@ -82,38 +84,62 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="title_bn">শিরোনাম (Title - Bangla)</label>
-                                                    <input type="text" class="form-control" id="title_bn" name="title_bn" placeholder="শিরোনাম লিখুন" value="{{ old('title_bn') }}"/>
+                                                    <input type="text" class="form-control" id="title_bn" name="title_bn" placeholder="শিরোনাম লিখুন" value="{{ old('title_bn', $media->title_bn) }}"/>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="description_bn">বিবরণ (Description - Bangla)</label>
-                                                    <textarea class="form-control" id="description_bn" name="description_bn" rows="3" placeholder="বিবরণ লিখুন">{{ old('description_bn') }}</textarea>
+                                                    <textarea class="form-control" id="description_bn" name="description_bn" rows="3" placeholder="বিবরণ লিখুন">{{ old('description_bn', $media->description_bn) }}</textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="location_bn">অবস্থান (Location - Bangla)</label>
-                                                    <input type="text" class="form-control" id="location_bn" name="location_bn" placeholder="অবস্থান লিখুন" value="{{ old('location_bn') }}"/>
+                                                    <input type="text" class="form-control" id="location_bn" name="location_bn" placeholder="অবস্থান লিখুন" value="{{ old('location_bn', $media->location_bn) }}"/>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <!-- Images Upload -->
+                                        <!-- Add More Images -->
                                         <hr/>
                                         <div class="form-group">
-                                            <label for="images">Images <span class="text-danger">*</span></label>
+                                            <label for="images">Add More Images</label>
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="images" name="images[]" accept="image/*" multiple required/>
+                                                <input type="file" class="custom-file-input" id="images" name="images[]" accept="image/*" multiple/>
                                                 <label class="custom-file-label" for="images">Choose images (multiple allowed)</label>
                                             </div>
-                                            <small class="form-text text-muted">You can select multiple images at once. Accepted formats: jpg, jpeg, png, gif, webp.</small>
+                                            <small class="form-text text-muted">Select new images to add to this media entry. Accepted formats: jpg, jpeg, png, gif, webp.</small>
                                         </div>
 
-                                        <!-- Image Previews -->
+                                        <!-- New Image Previews -->
                                         <div id="imagePreviewContainer" class="row mt-2"></div>
                                     </div>
                                 </div>
                                 <hr/>
-                                <button class="btn btn-primary" type="submit"><i class="fas fa-upload mr-1"></i> Upload Media</button>
+                                <button class="btn btn-success" type="submit"><i class="fas fa-save mr-1"></i> Update Media</button>
                                 <a href="{{ route("dashboard.media.index") }}" class="btn btn-secondary ml-2">Cancel</a>
                             </form>
+
+                            <!-- Existing Images -->
+                            @if ($media->files->count() > 0)
+                            <hr/>
+                            <h5>Current Images</h5>
+                            <div class="row mt-2">
+                                @foreach ($media->files as $file)
+                                <div class="col-md-2 col-sm-3 col-4 mb-3">
+                                    <div class="card h-100">
+                                        <img src="{{ asset("uploads/media/".$file->file_name) }}" class="card-img-top existing-img" alt="media image"/>
+                                        <div class="card-body p-1 text-center">
+                                            <form action="{{ route("dashboard.media.file.destroy", $file->id) }}" method="POST" class="delete-file-form">
+                                                @csrf
+                                                @method("DELETE")
+                                                <button type="submit" class="btn btn-danger btn-sm btn-block delete-file-btn" title="Delete this image">
+                                                    <i class="fas fa-trash"></i> Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -125,6 +151,10 @@
 
 @section("style")
 <style>
+    .existing-img {
+        height: 120px;
+        object-fit: cover;
+    }
     #imagePreviewContainer .preview-item {
         position: relative;
         margin-bottom: 10px;
@@ -135,22 +165,6 @@
         object-fit: cover;
         border-radius: 4px;
         border: 1px solid #dee2e6;
-    }
-    #imagePreviewContainer .remove-preview {
-        position: absolute;
-        top: 4px;
-        right: 18px;
-        background: rgba(220,53,69,0.85);
-        color: #fff;
-        border: none;
-        border-radius: 50%;
-        width: 22px;
-        height: 22px;
-        cursor: pointer;
-        font-size: 12px;
-        line-height: 22px;
-        text-align: center;
-        padding: 0;
     }
 </style>
 @endsection
@@ -183,6 +197,28 @@
                 reader.readAsDataURL(file);
             });
         }
+
+        // Delete single image confirmation
+        $('.delete-file-btn').on('click', function(e) {
+            e.preventDefault();
+            var form = $(this).closest('form');
+            Swal.fire({
+                title: 'Delete Image?',
+                text: "This image will be permanently deleted!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        });
     });
 </script>
 @endsection
+
+
+
