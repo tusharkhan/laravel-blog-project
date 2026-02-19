@@ -45,14 +45,7 @@
                     <label class="gallery-filter-label" for="date">
                         <i class="las la-calendar"></i> {{ __('messages.filter_by_date') }}
                     </label>
-                    <select id="date" name="date" class="form-control gallery-filter-input">
-                        <option value="">{{ __('messages.all_dates') }}</option>
-                        @foreach ($dates as $val => $label)
-                            <option value="{{ $val }}" {{ request('date') == $val ? 'selected' : '' }}>
-                                {{ $label }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <input type="date" name="date" class="form-control gallery-filter-input" value="{{ request('date') }}">
                 </div>
 
                 {{-- Buttons --}}

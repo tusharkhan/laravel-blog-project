@@ -57,12 +57,6 @@ class MediaController extends Controller
             ]);
         }
 
-        // Set file_name to first image for backward compat
-        $firstFile = $media->files()->first();
-        if ($firstFile) {
-            $media->update(["file_name" => $firstFile->file_name]);
-        }
-
         return redirect()->route("dashboard.media.index")->with("success", "Media uploaded successfully!");
     }
 
@@ -108,11 +102,6 @@ class MediaController extends Controller
                     "media_id"  => $media->id,
                     "file_name" => $imageName,
                 ]);
-            }
-            // Update file_name to first image
-            $firstFile = $media->files()->first();
-            if ($firstFile) {
-                $media->update(["file_name" => $firstFile->file_name]);
             }
         }
 
