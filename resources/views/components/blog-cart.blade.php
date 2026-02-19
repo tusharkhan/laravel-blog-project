@@ -1,7 +1,7 @@
 <div class="col-lg-3 col-md-3 col-sm-12 mb-4">
 <div class="card post-card h-100 border shadow transition-hover">
     <div class="post-card-image border-bottom">
-        <a href="{{ route("frontend.post", $post->getLocalizedSlug()) }}">
+        <a href="{{ route("frontend.post", $post->slug) }}">
             <img src="{{ asset("uploads/post/".$post->thumbnail) }}" alt="{{ $post->getLocalizedTitle() }}" class="card-img-top"/>
         </a>
     </div>

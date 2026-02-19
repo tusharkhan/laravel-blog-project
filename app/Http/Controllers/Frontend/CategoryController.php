@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     public function index($slug) {
-        $slug_column = app()->getLocale() == "en" ? "slug" : "slug_bn";
+        $slug_column = "slug";
         $category = Category::where($slug_column, $slug)->where("status", true)->first();
         if ($category) {
             $str = Str::class;
