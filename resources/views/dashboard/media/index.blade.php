@@ -23,8 +23,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header d-flex align-items-center justify-content-between">
                             <h3 class="card-title">All Media</h3>
+                            <a href="{{ route("dashboard.media.create") }}" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus mr-1"></i> Add New Media
+                            </a>
                         </div>
                         <div class="card-body">
                             @if ($errors->any())
@@ -43,25 +46,81 @@
                                 <p class="m-0">{{ session("success") }}</p>
                             </div>
                             @endif
-                            <div class="row">
-                                @forelse ($media as $item)
-                                <div class="col-md-3 mx-auto border p-1 d-flex flex-column justify-content-between">
-                                    <div class="image">
-                                        <img class="img-fluid" src="{{ asset("uploads/media/".$item->file_name) }}"/>
+
+                            @forelse ($media as $item)
+                            <div class="card mb-3 shadow-sm">
+                                <div class="card-header py-2">
+                                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                                        <div>
+                                            @if ($item->title)
+                                            <strong>{{ $item->title }}</strong>
+                                            @if ($item->title_bn)
+                                            <span class="text-muted ml-2">/ {{ $item->title_bn }}</span>
+                                            @endif
+                                            @else
+                                            <span class="text-muted">(No title)</span>
+                                            @endif
+                                            @if ($item->location || $item->location_bn)
+                                            <span class="badge badge-info ml-2">
+                                                <i class="fas fa-map-marker-alt mr-1"></i>
+                                                {{ $item->location }}{{ $item->location && $item->location_bn ? ' / ' : '' }}{{ $item->location_bn }}
+                                            </span>
+                                            @endif
+                                        </div>
+                                        <div class="d-flex align-items-center mt-1 mt-sm-0">
+                                            <small class="text-muted mr-2"><i class="fas fa-images mr-1"></i>{{ $item->files->count() }} image(s)</small>
+                                            <a href="{{ route("dashboard.media.edit", $item->id) }}" class="btn btn-sm btn-info mr-1">
+                                                <i class="fas fa-edit"></i> Edit
+                                            </a>
+                                            <form action="{{ route("dashboard.media.destroy", $item->id) }}" method="POST" class="delete-form">
+                                                @csrf
+                                                @method("DELETE")
+                                                <button type="submit" class="btn btn-sm btn-danger deletebtn">
+                                                    <i class="fas fa-trash"></i> Delete All
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="image-footer d-flex justify-content-center text-center mt-2">
-                                        <button class="btn btn-primary copybtn" data-clipboard-text="{{ asset("uploads/media/".$item->file_name) }}">Copy Link</button>
-                                        <form action="{{ route("dashboard.media.destroy", $item->id) }}" method="POST">
-                                            @csrf
-                                            @method("DELETE")
-                                            <button class="btn btn-danger deletebtn">Delete</button>
-                                        </form>
+                                    @if ($item->description || $item->description_bn)
+                                    <div class="mt-1">
+                                        @if ($item->description)
+                                        <small class="text-muted">{{ Str::limit($item->description, 120) }}</small>
+                                        @endif
+                                        @if ($item->description_bn)
+                                        <small class="text-muted ml-2">| {{ Str::limit($item->description_bn, 120) }}</small>
+                                        @endif
+                                    </div>
+                                    @endif
+                                </div>
+                                <div class="card-body py-2">
+                                    <div class="row">
+                                        @foreach ($item->files as $file)
+                                        <div class="col-md-2 col-sm-3 col-4 mb-2">
+                                            <div class="position-relative">
+                                                <img class="img-fluid rounded media-thumb" src="{{ asset("uploads/media/".$file->file_name) }}" alt="{{ $item->title }}" title="{{ $item->title }}"/>
+                                                <button class="btn btn-xs btn-outline-secondary copybtn mt-1 btn-block" data-clipboard-text="{{ asset("uploads/media/".$file->file_name) }}" title="Copy image link">
+                                                    <i class="fas fa-copy mr-1"></i>Copy Link
+                                                </button>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                        @if ($item->files->count() === 0 && $item->file_name)
+                                        <div class="col-md-2 col-sm-3 col-4 mb-2">
+                                            <img class="img-fluid rounded media-thumb" src="{{ asset("uploads/media/".$item->file_name) }}" alt="{{ $item->title }}"/>
+                                            <button class="btn btn-xs btn-outline-secondary copybtn mt-1 btn-block" data-clipboard-text="{{ asset("uploads/media/".$item->file_name) }}">
+                                                <i class="fas fa-copy mr-1"></i>Copy Link
+                                            </button>
+                                        </div>
+                                        @endif
                                     </div>
                                 </div>
-                                @empty
-                                <div class="alert alert-danger w-100">No media found!</div>
-                                @endforelse
                             </div>
+                            @empty
+                            <div class="alert alert-warning">
+                                <i class="fas fa-exclamation-triangle mr-1"></i> No media found!
+                                <a href="{{ route("dashboard.media.create") }}" class="ml-2">Upload your first media</a>
+                            </div>
+                            @endforelse
                         </div>
                         <div class="card-footer clearfix">
                             <ul class="pagination pagination-sm m-0 float-right">
@@ -74,6 +133,17 @@
         </div>
     </section>
 </div>
+@endsection
+
+@section("style")
+<style>
+    .media-thumb {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        border: 1px solid #dee2e6;
+    }
+</style>
 @endsection
 
 @section("script")
@@ -98,20 +168,20 @@
             title: 'Link copied to clipboard!'
         });
     });
-    $('.deletebtn').on('click',function(e){
+
+    $('.deletebtn').on('click', function(e) {
         e.preventDefault();
-        var form = $(this).parents('form');
+        var form = $(this).closest('form');
         Swal.fire({
             title: 'Are you sure?',
-            type: 'warning',
             icon: 'warning',
-            text: "You won't be able to revert this!",
+            text: "This will delete the media and all its images permanently!",
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
-            if (result.value) {
+            if (result.isConfirmed) {
                 form.submit();
             }
         });

@@ -66,7 +66,8 @@ Route::name('dashboard.')->prefix('/dashboard')->middleware(['auth'])->group(fun
     Route::resource('/posts', DashboardPostController::class)->except(['show']);
 
     // media
-    Route::resource('/media', MediaController::class)->except(['show', 'edit', 'update']);
+    Route::resource('/media', MediaController::class)->except(['show']);
+    Route::delete('/media/file/{fileId}', [MediaController::class, 'destroyFile'])->name('media.file.destroy');
 
     // comments
     Route::prefix('/comments')->name('comments.')->controller(DashboardCommentController::class)->group(function () {

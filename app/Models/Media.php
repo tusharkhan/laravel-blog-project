@@ -14,5 +14,21 @@ class Media extends Model
     protected $fillable = [
         "user_id",
         "file_name",
+        "title",
+        "title_bn",
+        "description",
+        "description_bn",
+        "location",
+        "location_bn",
     ];
+
+    public function files()
+    {
+        return $this->hasMany(MediaFile::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
