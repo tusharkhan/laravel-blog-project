@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 use Tusharkhan\BanglaFaker\Facade\BanglaFaker;
 
 /**
@@ -33,14 +34,14 @@ class PostFactory extends Factory
             'title' => fake()->sentence(),
             'title_bn' => BanglaFaker::sentence(),
             'slug' => fake()->slug(),
-            'slug_bn' => fake()->slug(),
+            'slug_bn' => str_replace(' ', '-', BanglaFaker::sentence()),
             'content' => fake()->paragraphs(3, true),
-            'content_bn' => BanglaFaker::paragraph(3, true),
+            'content_bn' => BanglaFaker::paragraph(50, true),
             'thumbnail' => $image,
             'publisher' => fake()->company(),
             'publisher_bn' => BanglaFaker::sentence(),
             'reporter' => fake()->name(),
-            'reporter_bn' => BanglaFaker::firstNameMale(),
+            'reporter_bn' => BanglaFaker::maleName(),
             'location' => fake()->city(),
             'location_bn' => BanglaFaker::address(),
             'status' => true,
