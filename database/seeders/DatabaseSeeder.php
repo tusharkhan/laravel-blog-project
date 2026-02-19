@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\SiteSetting::create([
             'site_title' => 'Oredoo',
-            'tagline' => 'Laravel Blog Project',
+            'tagline' => 'Jamat Crimes',
             'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro tenetur non laudantium! Autem, similique. Error quidem sequi adipisci, voluptatem sunt possimus cum. Nisi, nobis quia! Odio, vel similique. Corrupti, a!',
             'logo_dark' => 'logo_dark.png',
             'logo_light' => 'logo_light.png',
@@ -48,19 +48,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Menu::create([
-            'header_menu' => json_encode([['href' => 'http://127.0.0.1:8000/', 'icon' => '', 'text' => 'Home', 'tooltip' => '', 'children' => []], ['href' => '#', 'icon' => '', 'text' => 'AboutUs', 'tooltip' => '', 'children' => []], ['href' => '#', 'icon' => '', 'text' => 'ContactUs', 'tooltip' => '', 'children' => []], ['href' => '#', 'icon' => '', 'text' => 'PrivacyPolicy', 'tooltip' => '', 'children' => []]]),
-            'footer_menu' => json_encode([['href' => 'http://127.0.0.1:8000/', 'icon' => '', 'text' => 'Home', 'tooltip' => '', 'children' => []], ['href' => '#', 'icon' => '', 'text' => 'AboutUs', 'tooltip' => '', 'children' => []], ['href' => '#', 'icon' => '', 'text' => 'ContactUs', 'tooltip' => '', 'children' => []], ['href' => '#', 'icon' => '', 'text' => 'PrivacyPolicy', 'tooltip' => '', 'children' => []]]),
+            'header_menu' => json_encode([['href' => 'http://127.0.0.1:8000/', 'icon' => '', 'text' => 'Home', 'tooltip' => '', 'children' => []]]),
+            'footer_menu' => json_encode([['href' => 'http://127.0.0.1:8000/', 'icon' => '', 'text' => 'Home', 'tooltip' => '', 'children' => []]]),
         ]);
-
-        for ($i = 1; $i <= 100; $i++) {
-            $tagIds = Tag::inRandomOrder()->take(rand(1, 5))->pluck('id')->toArray();
-            $postIds = Post::inRandomOrder()->take(1)->pluck('id')->toArray();
-            DB::table('post_tag')->insert([
-                'post_id' => $postIds[array_rand($postIds)],
-                'tag_id' => $tagIds[array_rand($tagIds)],
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
     }
 }

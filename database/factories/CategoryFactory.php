@@ -20,9 +20,9 @@ class CategoryFactory extends Factory
     {
         return [
             'title' => fake()->word(),
-            'title_bn' => BanglaFaker::word(),
+            'title_bn' => BanglaFaker::sentence(),
             'slug' => fake()->slug(),
-            'slug_bn' => Str::slug(BanglaFaker::word()),
+            'slug_bn' => fake()->slug(),
             'description' => fake()->paragraph(),
             'description_bn' => fake()->paragraph(),
             'status' => true,
