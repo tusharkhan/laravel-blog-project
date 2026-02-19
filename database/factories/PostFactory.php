@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use Tusharkhan\BanglaFaker\Facade\BanglaFaker;
 
 /**
@@ -21,7 +20,7 @@ class PostFactory extends Factory
         $image = $this->faker->image('public/uploads/post', 640, 480, null, false);
 
         if(!$image) {
-            $image = fake()->randomElement(['wp5432176-the-last-of-us-4k-wallpapers.jpg', '7236de0c5ae5feddb99c02391383aee4.jpg']);
+            $image = fake()->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) . '.jpg';
         }
 
         return [
