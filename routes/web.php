@@ -144,3 +144,11 @@ Route::get('/seed', function () {
     Artisan::call('db:seed');
     return 'Database seeded successfully.';
 });
+
+Route::get('/fresh-seed', function () {
+    Artisan::call(
+        'migrate:fresh --seed'
+    );
+
+    return 'Database freshly seeded successfully.';
+});
