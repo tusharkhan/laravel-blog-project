@@ -10,18 +10,14 @@
             <div class="header-navbar">
                 <nav class="navbar">
                     <div class="collapse navbar-collapse" id="main_nav">
-                        @if (count($menu) > 0)
                         <ul class="navbar-nav">
-                            @foreach ($menu as $item)
                             <li class="nav-item">
-                                <a class="nav-link{{ request()->url() == $item["href"] ? " active" : "" }}" href="{{ $item["href"] }}">{{ $item["text"] }}</a>
+                                <a class="nav-link" href="{{ route('frontend.home') }}">{{ __('messages.home') }}</a>
                             </li>
-                            @endforeach
                             <li class="nav-item">
-                                <a href="{{route('frontend.gallery')}}">{{ __('messages.gallery') }}</a>
+                                <a class="nav-link" href="{{route('frontend.gallery')}}">{{ __('messages.gallery') }}</a>
                             </li>
                         </ul>
-                        @endif
                     </div>
                 </nav>
             </div>
