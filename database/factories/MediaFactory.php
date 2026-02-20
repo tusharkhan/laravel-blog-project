@@ -26,7 +26,7 @@ class MediaFactory extends Factory
             'location_bn' => BanglaFaker::address(),
             'user_id' => function () {
                 return \App\Models\User::all()->random()->id;
-            }
+            },
         ];
     }
 }

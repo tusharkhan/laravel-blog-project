@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index($slug)
     {
-        $slugColumn ='slug';
+        $slugColumn = 'slug';
 
         // Try to find post by the appropriate slug column
         $post = Post::with(['category', 'user', 'tags', 'links', 'comments.user', 'comments.replies.user'])

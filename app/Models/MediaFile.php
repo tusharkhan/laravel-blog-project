@@ -9,11 +9,11 @@ class MediaFile extends Model
 {
     use HasFactory;
 
-    protected $table = "media_files";
+    protected $table = 'media_files';
 
     protected $fillable = [
-        "media_id",
-        "file_name",
+        'media_id',
+        'file_name',
     ];
 
     public function media()
@@ -21,4 +21,3 @@ class MediaFile extends Model
         return $this->belongsTo(Media::class);
     }
 }
-

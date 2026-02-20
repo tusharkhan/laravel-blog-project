@@ -22,7 +22,8 @@ class PopularPosts extends Component
      */
     public function render(): View|Closure|string
     {
-        $popularposts = Post::where("status", true)->orderBy("views", "DESC")->limit(5)->get();
-        return view('components.frontend.popular-posts', compact("popularposts"));
+        $popularposts = Post::where('status', true)->orderBy('views', 'DESC')->limit(5)->get();
+
+        return view('components.frontend.popular-posts', compact('popularposts'));
     }
 }

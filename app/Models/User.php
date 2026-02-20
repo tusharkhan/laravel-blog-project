@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Str;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -21,9 +21,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     public const IS_VISITOR = 1;
+
     public const IS_AUTHOR = 2;
+
     public const IS_ADMIN = 3;
-    
+
     protected $fillable = [
         'name',
         'username',
@@ -61,21 +63,25 @@ class User extends Authenticatable
         'status' => 'boolean',
     ];
 
-    protected function username(): Attribute {
+    protected function username(): Attribute
+    {
         return Attribute::make(
             set: fn ($value) => Str::lower($value)
         );
     }
 
-    public function posts() {
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
 
-    public function comments() {
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function media() {
+    public function media()
+    {
         return $this->hasMany(Media::class);
     }
 }

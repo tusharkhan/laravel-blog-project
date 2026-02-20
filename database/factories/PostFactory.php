@@ -17,11 +17,11 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-//        $image = $this->faker->image('public/uploads/post', 640, 480, null, false);
+        //        $image = $this->faker->image('public/uploads/post', 640, 480, null, false);
         $image = null;
 
-        if(!$image) {
-            $image = fake()->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) . '.jpg';
+        if (! $image) {
+            $image = fake()->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]).'.jpg';
         }
 
         return [

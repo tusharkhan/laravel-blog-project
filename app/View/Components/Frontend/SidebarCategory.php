@@ -22,7 +22,8 @@ class SidebarCategory extends Component
      */
     public function render(): View|Closure|string
     {
-        $categories = Category::where("status", true)->orderBy("title", "ASC")->get();
-        return view('components.frontend.sidebar-category', compact("categories"));
+        $categories = Category::where('status', true)->orderBy('title', 'ASC')->get();
+
+        return view('components.frontend.sidebar-category', compact('categories'));
     }
 }

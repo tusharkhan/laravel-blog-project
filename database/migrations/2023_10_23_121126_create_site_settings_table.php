@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('site_settings', function (Blueprint $table) {
             $table->id();
-            $table->string("site_title");
-            $table->string("tagline");
-            $table->longText("description");
-            $table->string("logo_dark");
-            $table->string("logo_light");
-            $table->longText("copyright_text");
-            $table->boolean("enable_registration");
+            $table->string('site_title');
+            $table->string('tagline');
+            $table->longText('description');
+            $table->string('logo_dark');
+            $table->string('logo_light');
+            $table->longText('copyright_text');
+            $table->boolean('enable_registration');
             $table->timestamps();
         });
     }

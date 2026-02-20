@@ -123,14 +123,16 @@ class Post extends Model
     public function getLocalizedCreatedAt()
     {
         $locale = app()->getLocale();
-        return $locale === 'bn' ?  Helper::englishToBanglaDateConverter($this->created_at, 'F d, Y') : $this->created_at->format('d M, Y');
+
+        return $locale === 'bn' ? Helper::englishToBanglaDateConverter($this->created_at, 'F d, Y') : $this->created_at->format('d M, Y');
     }
 
-    public function getLinks(){
+    public function getLinks()
+    {
         $links = $this->links()->pluck('url', 'title')->toArray();
         $str = '';
-        if(count($links) > 0){
-            foreach($links as $key => $value){
+        if (count($links) > 0) {
+            foreach ($links as $key => $value) {
                 $str .= '<a href="'.$value.'" target="_blank">'.$key.'</a> ,';
             }
         }

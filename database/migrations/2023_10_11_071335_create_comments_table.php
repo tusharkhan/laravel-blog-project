@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->longText("message");
-            $table->foreignId("post_id");
-            $table->integer("parent_id")->nullable()->default(null);
-            $table->integer("user_id")->nullable()->default(null);
-            $table->string("name")->nullable()->default(null);
-            $table->string("email")->nullable()->default(null);
-            $table->boolean("status")->default(true);
+            $table->longText('message');
+            $table->foreignId('post_id');
+            $table->integer('parent_id')->nullable()->default(null);
+            $table->integer('user_id')->nullable()->default(null);
+            $table->string('name')->nullable()->default(null);
+            $table->string('email')->nullable()->default(null);
+            $table->boolean('status')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

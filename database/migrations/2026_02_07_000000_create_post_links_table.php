@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('post_links', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("post_id")->constrained()->onDelete('cascade');
-            $table->string("title");
-            $table->string("url");
-            $table->integer("order")->default(0);
+            $table->foreignId('post_id')->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->string('url');
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }

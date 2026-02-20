@@ -145,6 +145,7 @@ Route::get('/clear-cache', function () {
 
 Route::get('/seed', function () {
     Artisan::call('db:seed');
+
     return 'Database seeded successfully.';
 });
 

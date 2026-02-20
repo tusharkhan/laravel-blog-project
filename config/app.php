@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
-
 return [
     'sitesettings' => \App\Models\SiteSetting::class,
     /*

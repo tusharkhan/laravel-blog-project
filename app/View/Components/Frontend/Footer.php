@@ -25,8 +25,9 @@ class Footer extends Component
     public function render(): View|Closure|string
     {
         $sitesettings = SiteSetting::first();
-        $socialmedia = SocialMedia::whereStatus(true)->orderBy("id", "ASC")->get();
+        $socialmedia = SocialMedia::whereStatus(true)->orderBy('id', 'ASC')->get();
         $menu = json_decode(Menu::first()->footer_menu, true);
-        return view('components.frontend.footer', compact("sitesettings", "socialmedia", "menu"));
+
+        return view('components.frontend.footer', compact('sitesettings', 'socialmedia', 'menu'));
     }
 }

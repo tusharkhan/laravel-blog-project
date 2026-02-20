@@ -16,13 +16,15 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && !Auth::user()->status) {
+        if (Auth::check() && ! Auth::user()->status) {
             Auth::logout();
-            return redirect()->route("auth.login")->withErrors("Your account is currently inactive!");
+
+            return redirect()->route('auth.login')->withErrors('Your account is currently inactive!');
         }
         if (Auth::check() && Auth::user()->status) {
             return $next($request);
         }
-        return redirect()->route("auth.login");
+
+        return redirect()->route('auth.login');
     }
 }

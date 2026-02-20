@@ -9,19 +9,19 @@ class SiteSetting extends Model
 {
     use HasFactory;
 
-    protected $table = "site_settings";
+    protected $table = 'site_settings';
 
     protected $fillable = [
-        "site_title",
-        "tagline",
-        "description",
-        "logo_dark",
-        "logo_light",
-        "copyright_text",
-        "enable_registration",
+        'site_title',
+        'tagline',
+        'description',
+        'logo_dark',
+        'logo_light',
+        'copyright_text',
+        'enable_registration',
     ];
 
     protected $casts = [
-        "enable_registration" => "boolean",
+        'enable_registration' => 'boolean',
     ];
 }

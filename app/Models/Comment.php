@@ -10,31 +10,34 @@ class Comment extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = "comments";
+    protected $table = 'comments';
 
     protected $fillable = [
-        "message",
-        "post_id",
-        "parent_id",
-        "user_id",
-        "name",
-        "email",
-        "status",
+        'message',
+        'post_id',
+        'parent_id',
+        'user_id',
+        'name',
+        'email',
+        'status',
     ];
 
     protected $casts = [
         'status' => 'boolean',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function post() {
+    public function post()
+    {
         return $this->belongsTo(Post::class);
     }
 
-    public function replies() {
-        return $this->hasMany($this, "parent_id")->orderBy("created_at", "ASC");
+    public function replies()
+    {
+        return $this->hasMany($this, 'parent_id')->orderBy('created_at', 'ASC');
     }
 }

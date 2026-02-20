@@ -22,24 +22,27 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define("update-post", function (User $user, $post) {
+        Gate::define('update-post', function (User $user, $post) {
             if ($user->role == User::IS_ADMIN) {
                 return true;
             }
+
             return $user->id === $post->user_id;
         });
 
-        Gate::define("update-comment", function (User $user, $comment) {
+        Gate::define('update-comment', function (User $user, $comment) {
             if ($user->role == User::IS_ADMIN) {
                 return true;
             }
+
             return $user->id === $comment->post->user_id;
         });
 
-        Gate::define("update-media", function (User $user, $media) {
+        Gate::define('update-media', function (User $user, $media) {
             if ($user->role == User::IS_ADMIN) {
                 return true;
             }
+
             return $user->id === $media->user_id;
         });
     }

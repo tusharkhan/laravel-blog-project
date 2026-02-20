@@ -10,23 +10,24 @@ class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = "categories";
+    protected $table = 'categories';
 
     protected $fillable = [
-        "title",
-        "title_bn",
-        "slug",
-        "slug_bn",
-        "description",
-        "description_bn",
-        "status",
+        'title',
+        'title_bn',
+        'slug',
+        'slug_bn',
+        'description',
+        'description_bn',
+        'status',
     ];
 
     protected $casts = [
         'status' => 'boolean',
     ];
 
-    public function posts() {
+    public function posts()
+    {
         return $this->hasMany(Post::class);
     }
 

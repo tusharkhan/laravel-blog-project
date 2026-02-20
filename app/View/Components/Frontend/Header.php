@@ -25,6 +25,7 @@ class Header extends Component
     {
         $sitesettings = SiteSetting::first();
         $menu = json_decode(Menu::first()->header_menu, true);
-        return view('components.frontend.header', compact("sitesettings", "menu"));
+
+        return view('components.frontend.header', compact('sitesettings', 'menu'));
     }
 }

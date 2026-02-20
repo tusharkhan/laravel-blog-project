@@ -22,7 +22,8 @@ class SidebarSocial extends Component
      */
     public function render(): View|Closure|string
     {
-        $socialmedia = SocialMedia::whereStatus(true)->orderBy("id", "ASC")->get();
-        return view('components.frontend.sidebar-social', compact("socialmedia"));
+        $socialmedia = SocialMedia::whereStatus(true)->orderBy('id', 'ASC')->get();
+
+        return view('components.frontend.sidebar-social', compact('socialmedia'));
     }
 }

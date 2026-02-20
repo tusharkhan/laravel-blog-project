@@ -9,16 +9,17 @@ class SocialMedia extends Model
 {
     use HasFactory;
 
-    protected $table = "social_media";
+    protected $table = 'social_media';
+
     protected $fillable = [
-        "title",
-        "icon",
-        "link",
-        "color",
-        "status",
+        'title',
+        'icon',
+        'link',
+        'color',
+        'status',
     ];
 
     protected $casts = [
-        "status" => "boolean",
+        'status' => 'boolean',
     ];
 }

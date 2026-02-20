@@ -17,7 +17,7 @@ class GalleryController extends Controller
             $search = $request->title;
             $query->where(function ($q) use ($search) {
                 $q->where('title', 'LIKE', "%{$search}%")
-                  ->orWhere('title_bn', 'LIKE', "%{$search}%");
+                    ->orWhere('title_bn', 'LIKE', "%{$search}%");
             });
         }
 
@@ -27,7 +27,7 @@ class GalleryController extends Controller
             // Support both YYYY-MM and YYYY-MM-DD
             if (strlen($date) === 7) {
                 $query->whereYear('created_at', substr($date, 0, 4))
-                      ->whereMonth('created_at', substr($date, 5, 2));
+                    ->whereMonth('created_at', substr($date, 5, 2));
             } else {
                 $query->whereDate('created_at', $date);
             }
@@ -37,11 +37,10 @@ class GalleryController extends Controller
 
         // Build distinct year-month list for the date dropdown
         $dates = Media::selectRaw("DATE_FORMAT(created_at, '%Y-%m') as month_val, DATE_FORMAT(created_at, '%M %Y') as month_label")
-            ->orderByRaw("created_at DESC")
+            ->orderByRaw('created_at DESC')
             ->distinct()
             ->pluck('month_label', 'month_val');
 
         return view('frontend.gallery.index', compact('mediaItems', 'dates'));
     }
 }
-

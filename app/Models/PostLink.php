@@ -9,16 +9,17 @@ class PostLink extends Model
 {
     use HasFactory;
 
-    protected $table = "post_links";
+    protected $table = 'post_links';
 
     protected $fillable = [
-        "post_id",
-        "title",
-        "url",
-        "order",
+        'post_id',
+        'title',
+        'url',
+        'order',
     ];
 
-    public function post() {
+    public function post()
+    {
         return $this->belongsTo(Post::class);
     }
 }

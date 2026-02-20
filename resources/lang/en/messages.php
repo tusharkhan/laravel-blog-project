@@ -72,13 +72,12 @@ return [
     'links' => 'Links',
 
     // Gallery
-    'gallery'           => 'Gallery',
-    'filter_by_title'   => 'Search by title',
-    'filter_by_date'    => 'Filter by date',
-    'all_dates'         => 'All Dates',
-    'filter'            => 'Filter',
-    'reset'             => 'Reset',
-    'images'            => 'Images',
-    'no_media_found'    => 'No media found!',
+    'gallery' => 'Gallery',
+    'filter_by_title' => 'Search by title',
+    'filter_by_date' => 'Filter by date',
+    'all_dates' => 'All Dates',
+    'filter' => 'Filter',
+    'reset' => 'Reset',
+    'images' => 'Images',
+    'no_media_found' => 'No media found!',
 ];
-

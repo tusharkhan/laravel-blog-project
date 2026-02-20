@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->json("header_menu");
-            $table->json("footer_menu");
+            $table->json('header_menu');
+            $table->json('footer_menu');
             $table->timestamps();
         });
     }

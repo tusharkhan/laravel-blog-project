@@ -10,16 +10,16 @@ class Page extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = "pages";
+    protected $table = 'pages';
 
     protected $fillable = [
-        "title",
-        "slug",
-        "content",
-        "status",
+        'title',
+        'slug',
+        'content',
+        'status',
     ];
 
     protected $casts = [
-        "status" => "boolean",
+        'status' => 'boolean',
     ];
 }
