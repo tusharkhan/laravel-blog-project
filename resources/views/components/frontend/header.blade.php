@@ -17,6 +17,9 @@
                                 <a class="nav-link{{ request()->url() == $item["href"] ? " active" : "" }}" href="{{ $item["href"] }}">{{ $item["text"] }}</a>
                             </li>
                             @endforeach
+                            <li class="nav-item">
+                                <a href="{{route('frontend.gallery')}}">{{ __('messages.gallery') }}</a>
+                            </li>
                         </ul>
                         @endif
                     </div>
