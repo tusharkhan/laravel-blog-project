@@ -8,8 +8,8 @@
          <div class="section-heading-2">
              <div class="row">
                  <div class="col-lg-12">
-                     <div class="section-heading-2-title">
-                         <h1>{{ $category->getLocalizedTitle() }}</h1>
+                     <div class="section-heading-2-title" >
+                         <h1 class="text-danger">{{ $category->getLocalizedTitle() }}</h1>
 {{--                         <p class="links"><a href="{{ route("frontend.home") }}">Home <i class="las la-angle-right"></i></a> {{ $category->getLocalizedTitle() }}</p>--}}
                      </div>
                  </div>

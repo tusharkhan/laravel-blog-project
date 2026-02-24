@@ -15,13 +15,13 @@
                                     </span>
         </div>
         <h5 class="entry-title card-title flex-grow-1">
-            <a href="{{ route("frontend.post", $post->getLocalizedSlug()) }}" class="text-dark">{{ $post->getLocalizedTitle() }}</a>
+            <a href="{{ route("frontend.post", $post->getLocalizedSlug()) }}" class="text-danger">{{ $post->getLocalizedTitle() }}</a>
         </h5>
         <p class="text-muted small ">
             <i class="las la-calendar"></i> {{ $post->getLocalizedCreatedAt() }}
         </p>
         <div class="post-btn mt-auto">
-            <a href="{{ route("frontend.post", $post->getLocalizedSlug()) }}" class="btn-read-more">
+            <a href="{{ route("frontend.post", $post->getLocalizedSlug()) }}" class="btn-read-more text-danger">
                 {{ app()->getLocale() == 'bn' ? 'আরও পড়ুন' : 'Continue Reading' }}
                 <i class="las la-long-arrow-alt-right"></i>
             </a>

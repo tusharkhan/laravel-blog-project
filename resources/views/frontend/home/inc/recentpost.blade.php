@@ -1,9 +1,5 @@
 <div class="col-lg-12 oredoo-content mt-10">
     <div class="theiaStickySidebar">
-        <div class="section-title">
-            <h3>{{ app()->getLocale() == 'bn' ? 'সাম্প্রতিক নিবন্ধ' : 'Recent Articles' }}</h3>
-            <hr>
-        </div>
 
         @forelse ($categories as $category)
             @if($category->posts->count() > 0)
@@ -13,12 +9,12 @@
                     <div class="category-title-wrapper d-flex align-items-center justify-content-between">
                         <div>
                             <h4 class="category-section-title mb-0">
-                                <a href="{{ route("frontend.category", $category->slug) }}" class="text-dark">
+                                <a href="{{ route("frontend.category", $category->slug) }}" class="text-danger">
                                     <i class="las la-folder"></i> {{ $category->getLocalizedTitle() }}
                                 </a>
                             </h4>
                         </div>
-                        <a href="{{ route("frontend.category", $category->getLocalizedSlug()) }}" class="btn btn-sm btn-outline-dark">
+                        <a href="{{ route("frontend.category", $category->slug) }}" class="btn btn-sm btn-outline-danger">
                             {{ app()->getLocale() == 'bn' ? 'সব দেখুন' : 'View All' }}
                         </a>
                     </div>

@@ -33,7 +33,7 @@
 {{--                </div>--}}
                 <div class="language-switcher" style="margin-left: 15px; margin-right: 15px;">
                     <div class="dropdown">
-                        <a class="btn btn-sm dropdown-toggle" href="#" role="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: var(--color-default); border: 1px solid var(--gray); padding: 5px 12px; border-radius: 5px;">
+                        <a class="btn btn-sm dropdown-toggle" href="#" role="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: var(--color-default); border: 1px solid oklch(63.7% .237 25.331); padding: 5px 12px; border-radius: 5px;">
                             @if(app()->getLocale() == 'bn')
                                 🇧🇩 বাংলা
                             @else
