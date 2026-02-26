@@ -41,6 +41,7 @@ class InfoController extends Controller
             'category_id' => $validated['category_id'],
             'links' => $validated['links'],
             'message' => $validated['message'],
+            'status' => 1
         ];
 
         if (Auth::check()) {
