@@ -660,6 +660,20 @@ hr {
     text-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 
+/* -- Search Result Bar (home page inline results) -- */
+.search-result-bar {
+    background: #f8f9fa;
+    border-left: 4px solid #e63946;
+    border-radius: 6px;
+    padding: 14px 18px;
+}
+
+.search-result-heading {
+    font-size: 18px;
+    font-weight: 600;
+    color: #222;
+}
+
 /* -- Hero Search Form -- */
 .hero-search-form {
     max-width: 720px;
