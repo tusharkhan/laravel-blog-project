@@ -89,4 +89,5 @@ return [
     'info_links_placeholder' => 'কমা দিয়ে আলাদা করে লিংক দিন (যেমন https://example.com, https://another.com)',
     'info_message' => 'বার্তা',
     'info_message_placeholder' => 'আপনার বার্তা এখানে লিখুন...',
+    'info_submitted_successfully' => 'আপনার তথ্য সফলভাবে জমা দেওয়া হয়েছে!',
 ];

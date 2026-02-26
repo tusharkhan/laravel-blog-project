@@ -52,7 +52,7 @@ class InfoController extends Controller
 
         Info::create($data);
 
-        return redirect()->route('frontend.info')->with('success', 'Your information has been submitted successfully!');
+        return redirect()->route('frontend.info')->with('success', __('messages.info_submitted_successfully'));
     }
 }
 

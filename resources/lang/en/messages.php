@@ -89,4 +89,5 @@ return [
     'info_links_placeholder' => 'Enter links separated by commas (e.g. https://example.com, https://another.com)',
     'info_message' => 'Message',
     'info_message_placeholder' => 'Write your message here...',
+    'info_submitted_successfully' => 'Your information has been submitted successfully!',
 ];
