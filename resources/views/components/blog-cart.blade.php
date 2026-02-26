@@ -7,11 +7,8 @@
     </div>
     <div class="card-body d-flex flex-column">
         <div class="post-meta mb-2">
-                                    <span class="badge badge-info">
+                                    <span class="text-muted small">
                                         {{ app()->getLocale() == 'bn' ? "প্রকাশক" : "Publisher" }} : {{ $post->getLocalizedPublisher() }}
-                                    </span>
-            <span class="badge badge-secondary">
-                                        {{ app()->getLocale() == 'bn' ? "প্রকাশিত তারিখ:" : "Published At" }} : {{ $post->getLocalizedCreatedAt() }}
                                     </span>
         </div>
         <h5 class="entry-title card-title flex-grow-1">
