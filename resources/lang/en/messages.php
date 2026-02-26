@@ -80,4 +80,13 @@ return [
     'reset' => 'Reset',
     'images' => 'Images',
     'no_media_found' => 'No media found!',
+
+    // Info
+    'info' => 'Info',
+    'info_subtitle' => 'Share information with us by filling out the form below.',
+    'select_category' => 'Select a Category',
+    'info_links' => 'Links',
+    'info_links_placeholder' => 'Enter links separated by commas (e.g. https://example.com, https://another.com)',
+    'info_message' => 'Message',
+    'info_message_placeholder' => 'Write your message here...',
 ];
