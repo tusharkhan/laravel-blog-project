@@ -17,6 +17,9 @@ class SiteSetting extends Model
         'description',
         'logo_dark',
         'logo_light',
+        'banner_image',
+        'banner_title',
+        'banner_subtitle',
         'copyright_text',
         'enable_registration',
     ];

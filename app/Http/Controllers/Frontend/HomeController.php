@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\SiteSetting;
 
 class HomeController extends Controller
 {
@@ -21,6 +22,11 @@ class HomeController extends Controller
             ->orderBy('id', 'DESC')
             ->get();
 
-        return view('frontend.home.index', compact('categories'));
+        $sitesettings = SiteSetting::first();
+
+        // All active categories for the banner search dropdown
+        $searchCategories = Category::where('status', true)->orderBy('title', 'ASC')->get();
+
+        return view('frontend.home.index', compact('categories', 'sitesettings', 'searchCategories'));
     }
 }
