@@ -7,9 +7,7 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-lg-12">
-                <div class="post-single-image mb-4">
-                    <img src="{{ asset("uploads/post/".$post->thumbnail) }}" alt="{{ $post->getLocalizedTitle() }}" class="img-fluid"/>
-                </div>
+
                 <div class="post-single-body">
                     <div class="post-single-title">
                         <h1>{{ $post->getLocalizedTitle() }}</h1>
@@ -38,14 +36,19 @@
 
                                 <div class="col-md-6 mb-2">
                                     <p class="entry-cat mb-1">
-                                        <span class="text-dark text-decoration-underline">{{ __('messages.links') }} </span> : {!! $post->getLinks() !!}
+                                        <span class="text-dark text-decoration-underline">{{ __('messages.links') }} </span> : <span class="link">{!! $post->getLinks() !!}</span>
                                     </p>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                    <div class="post-single-content">
+
+                    <div class="post-single-image mb-4">
+                        <img src="{{ asset("uploads/post/".$post->thumbnail) }}" alt="{{ $post->getLocalizedTitle() }}" class="img-fluid"/>
+                    </div>
+
+                    <div class="post-single-content text-dark">
                         {!! $post->getLocalizedContent() !!}
                     </div>
                     <div class="post-single-bottom">
