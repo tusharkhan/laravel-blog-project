@@ -17,6 +17,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('frontend.gallery')}}">{{ __('messages.gallery') }}</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('frontend.info')}}">{{ __('messages.info') }}</a>
+                            </li>
                         </ul>
                     </div>
                 </nav>

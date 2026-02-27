@@ -7,9 +7,7 @@
     <div class="container-fluid">
         <div class="row ">
             <div class="col-lg-12">
-                <div class="post-single-image mb-4">
-                    <img src="{{ asset("uploads/post/".$post->thumbnail) }}" alt="{{ $post->getLocalizedTitle() }}" class="img-fluid"/>
-                </div>
+
                 <div class="post-single-body">
                     <div class="post-single-title">
                         <h1>{{ $post->getLocalizedTitle() }}</h1>
@@ -38,14 +36,19 @@
 
                                 <div class="col-md-6 mb-2">
                                     <p class="entry-cat mb-1">
-                                        <span class="text-dark text-decoration-underline">{{ __('messages.links') }} </span> : {!! $post->getLinks() !!}
+                                        <span class="text-dark text-decoration-underline">{{ __('messages.links') }} </span> : <span class="link">{!! $post->getLinks() !!}</span>
                                     </p>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-                    <div class="post-single-content">
+
+                    <div class="post-single-image mb-4">
+                        <img src="{{ asset("uploads/post/".$post->thumbnail) }}" alt="{{ $post->getLocalizedTitle() }}" class="img-fluid"/>
+                    </div>
+
+                    <div class="post-single-content text-dark">
                         {!! $post->getLocalizedContent() !!}
                     </div>
                     <div class="post-single-bottom">
@@ -54,19 +57,16 @@
                             <p>{{ app()->getLocale() == 'bn' ? 'শেয়ার করুন:' : 'Share on :' }}</p>
                             <ul class="list-inline">
                                 <li>
-                                    <a href="{{ request()->url() }}"><i class="fab fa-facebook"></i></a>
+                                    <a href="{{ \App\Utills\Helper::generateSocialShareUrl('facebook', request()->url(), $post->getLocalizedTitle()) }}" target="_blank" rel="noopener noreferrer" title="Share on Facebook"><i class="fab fa-facebook"></i></a>
                                 </li>
                                 <li>
-                                    <a href="{{ request()->url() }}"><i class="fab fa-instagram"></i></a>
+                                    <a href="{{ \App\Utills\Helper::generateSocialShareUrl('twitter', request()->url(), $post->getLocalizedTitle()) }}" target="_blank" rel="noopener noreferrer" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
                                 </li>
                                 <li>
-                                    <a href="{{ request()->url() }}"><i class="fab fa-twitter"></i></a>
+                                    <a href="{{ \App\Utills\Helper::generateSocialShareUrl('linkedin', request()->url(), $post->getLocalizedTitle()) }}" target="_blank" rel="noopener noreferrer" title="Share on LinkedIn"><i class="fab fa-linkedin"></i></a>
                                 </li>
                                 <li>
-                                    <a href="{{ request()->url() }}"><i class="fab fa-youtube"></i></a>
-                                </li>
-                                <li>
-                                    <a href="{{ request()->url() }}"><i class="fab fa-pinterest"></i></a>
+                                    <a href="{{ \App\Utills\Helper::generateSocialShareUrl('pinterest', request()->url(), $post->getLocalizedTitle()) }}" target="_blank" rel="noopener noreferrer" title="Share on Pinterest"><i class="fab fa-pinterest"></i></a>
                                 </li>
                             </ul>
                         </div>

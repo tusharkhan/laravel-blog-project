@@ -7,21 +7,18 @@
     </div>
     <div class="card-body d-flex flex-column">
         <div class="post-meta mb-2">
-                                    <span class="badge badge-info">
+                                    <span class="text-muted small">
                                         {{ app()->getLocale() == 'bn' ? "প্রকাশক" : "Publisher" }} : {{ $post->getLocalizedPublisher() }}
-                                    </span>
-            <span class="badge badge-secondary">
-                                        {{ app()->getLocale() == 'bn' ? "প্রকাশিত তারিখ:" : "Published At" }} : {{ $post->getLocalizedCreatedAt() }}
                                     </span>
         </div>
         <h5 class="entry-title card-title flex-grow-1">
-            <a href="{{ route("frontend.post", $post->getLocalizedSlug()) }}" class="text-danger">{{ $post->getLocalizedTitle() }}</a>
+            <a href="{{ route("frontend.post", $post->slug) }}" class="text-danger">{{ $post->getLocalizedTitle() }}</a>
         </h5>
         <p class="text-muted small ">
             <i class="las la-calendar"></i> {{ $post->getLocalizedCreatedAt() }}
         </p>
         <div class="post-btn mt-auto">
-            <a href="{{ route("frontend.post", $post->getLocalizedSlug()) }}" class="btn-read-more text-danger">
+            <a href="{{ route("frontend.post", $post->slug) }}" class="btn-read-more text-danger">
                 {{ app()->getLocale() == 'bn' ? 'আরও পড়ুন' : 'Continue Reading' }}
                 <i class="las la-long-arrow-alt-right"></i>
             </a>

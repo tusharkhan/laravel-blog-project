@@ -111,6 +111,31 @@ class Helper
 
     public static function englishToBanglaNumberConverter($number)
     {
-        return str_replace(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'], $number);
+        return str_replace(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'], $number);
+    }
+
+    /**
+     * Generate social share URLs
+     *
+     * @param  string  $platform  Social media platform (facebook, twitter, linkedin, pinterest, whatsapp, telegram)
+     * @param  string  $url  URL to share
+     * @param  string|null  $title  Title for the share (used by some platforms)
+     * @return string Share URL for the platform
+     */
+    public static function generateSocialShareUrl(string $platform, string $url, ?string $title = null): string
+    {
+        $encodedUrl = urlencode($url);
+        $encodedTitle = urlencode($title ?? '');
+
+        return match(strtolower($platform)) {
+            'facebook' => "https://www.facebook.com/sharer/sharer.php?u={$encodedUrl}",
+            'twitter' => "https://twitter.com/intent/tweet?url={$encodedUrl}&text={$encodedTitle}",
+            'linkedin' => "https://www.linkedin.com/sharing/share-offsite/?url={$encodedUrl}",
+            'pinterest' => "https://pinterest.com/pin/create/button/?url={$encodedUrl}&description={$encodedTitle}",
+            'whatsapp' => "https://wa.me/?text={$encodedTitle}%20{$encodedUrl}",
+            'telegram' => "https://t.me/share/url?url={$encodedUrl}&text={$encodedTitle}",
+            'email' => "mailto:?subject={$encodedTitle}&body={$encodedUrl}",
+            default => $url,
+        };
     }
 }

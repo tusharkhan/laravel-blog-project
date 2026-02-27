@@ -71,6 +71,23 @@
                                             <input type="file" class="form-control" id="logo_light" name="logo_light" accept="image/*"/>
                                         </div>
                                         <div class="form-group">
+                                            <label for="banner_image">Banner Image <span class="font-italic">(Home page hero banner)</span></label>
+                                            @if($sitesettings->banner_image)
+                                            <img id="banner_imagepreview" src="{{ asset("uploads/banner/".$sitesettings->banner_image) }}" class="d-block mb-3 img-fluid img-thumbnail" style="max-height:200px;"/>
+                                            @else
+                                            <img id="banner_imagepreview" src="" class="d-none d-block mb-3 img-fluid img-thumbnail" style="max-height:200px;"/>
+                                            @endif
+                                            <input type="file" class="form-control" id="banner_image" name="banner_image" accept="image/*"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="banner_title">Banner Title <span class="font-italic">(Overlay text on banner)</span></label>
+                                            <input type="text" class="form-control" id="banner_title" name="banner_title" placeholder="e.g. Welcome to our Blog" value="{{ $sitesettings->banner_title }}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="banner_subtitle">Banner Subtitle <span class="font-italic">(Overlay subtitle on banner)</span></label>
+                                            <input type="text" class="form-control" id="banner_subtitle" name="banner_subtitle" placeholder="e.g. Discover the latest articles" value="{{ $sitesettings->banner_subtitle }}"/>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="copyright_text">Copyright Text</label>
                                             <textarea id="copyright_text" name="copyright_text" placeholder="Enter copyright text" class="form-control">{{ $sitesettings->copyright_text }}</textarea>
                                         </div>
@@ -120,6 +137,9 @@
         });
         $("#logo_light").change(function(){
             readURL(this, "#logo_lightpreview", "#logo_light");
+        });
+        $("#banner_image").change(function(){
+            readURL(this, "#banner_imagepreview", "#banner_image");
         });
     });
 </script>

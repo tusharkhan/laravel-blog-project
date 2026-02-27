@@ -170,6 +170,12 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route("dashboard.infos.index") }}" class="nav-link {{ request()->route()->getName() == "dashboard.infos.index" ? "active" : "" }}">
+                        <i class="nav-icon fas fa-info-circle"></i>
+                        <p>Infos</p>
+                    </a>
+                </li>
                 @endif
                 <li class="nav-item {{ in_array(request()->route()->getName(), ["dashboard.settings.password", "dashboard.settings.menus.footer", "dashboard.settings.menus.header", "dashboard.settings.site", "dashboard.settings.profile","dashboard.settings.social.media"]) ? "menu-open" : "" }}">
                     <a href="#" class="nav-link {{ in_array(request()->route()->getName(), ["dashboard.settings.password", "dashboard.settings.menus.footer", "dashboard.settings.menus.header", "dashboard.settings.site", "dashboard.settings.profile", "dashboard.settings.social.media"]) ? "active" : "" }}">
