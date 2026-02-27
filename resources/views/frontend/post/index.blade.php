@@ -57,19 +57,16 @@
                             <p>{{ app()->getLocale() == 'bn' ? 'শেয়ার করুন:' : 'Share on :' }}</p>
                             <ul class="list-inline">
                                 <li>
-                                    <a href="{{ request()->url() }}"><i class="fab fa-facebook"></i></a>
+                                    <a href="{{ \App\Utills\Helper::generateSocialShareUrl('facebook', request()->url(), $post->getLocalizedTitle()) }}" target="_blank" rel="noopener noreferrer" title="Share on Facebook"><i class="fab fa-facebook"></i></a>
                                 </li>
                                 <li>
-                                    <a href="{{ request()->url() }}"><i class="fab fa-instagram"></i></a>
+                                    <a href="{{ \App\Utills\Helper::generateSocialShareUrl('twitter', request()->url(), $post->getLocalizedTitle()) }}" target="_blank" rel="noopener noreferrer" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
                                 </li>
                                 <li>
-                                    <a href="{{ request()->url() }}"><i class="fab fa-twitter"></i></a>
+                                    <a href="{{ \App\Utills\Helper::generateSocialShareUrl('linkedin', request()->url(), $post->getLocalizedTitle()) }}" target="_blank" rel="noopener noreferrer" title="Share on LinkedIn"><i class="fab fa-linkedin"></i></a>
                                 </li>
                                 <li>
-                                    <a href="{{ request()->url() }}"><i class="fab fa-youtube"></i></a>
-                                </li>
-                                <li>
-                                    <a href="{{ request()->url() }}"><i class="fab fa-pinterest"></i></a>
+                                    <a href="{{ \App\Utills\Helper::generateSocialShareUrl('pinterest', request()->url(), $post->getLocalizedTitle()) }}" target="_blank" rel="noopener noreferrer" title="Share on Pinterest"><i class="fab fa-pinterest"></i></a>
                                 </li>
                             </ul>
                         </div>
